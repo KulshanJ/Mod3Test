@@ -1,5 +1,6 @@
 from qset_lib import Rover
 from time import sleep
+import time
 
 def main():
     rover = Rover()
