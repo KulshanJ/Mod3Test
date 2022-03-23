@@ -24,7 +24,7 @@ def main():
         
     left_side_speed = 7
     right_side_speed = -7
-    time.sleep(5)
+    time.sleep(500)
         
 if __name__ == "__main__":
     main()
