@@ -11,6 +11,16 @@ def main():
 
     left_side_speed = 7
     right_side_speed = 7
+    time.sleep(sec)
+    left_side_speed = 0
+    right_side_speed = 0
+    time.sleep(sec)
+    left_side_speed = 7
+    right_side_speed = -7
+    time.sleep(sec)
+    left_side_speed = 0
+    right_side_speed = 0
+    time.sleep(sec)
 
     while i < 3000:
         #print("X: " + rover.x + " Y: " + rover.y + " Heading: " + rover.heading)
