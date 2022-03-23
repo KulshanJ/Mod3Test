@@ -6,8 +6,8 @@ def main():
     
     i = 0
 
-    left_side_speed = 50
-    right_side_speed = 50
+    left_side_speed = 25
+    right_side_speed = 25
 
     while i < 3000:
         #print("X: " + rover.x + " Y: " + rover.y + " Heading: " + rover.heading)
