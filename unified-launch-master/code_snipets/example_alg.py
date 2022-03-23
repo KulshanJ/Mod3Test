@@ -1,8 +1,5 @@
 from qset_lib import Rover
 from time import sleep
-import time
-
-sec = 5
 
 def main():
     rover = Rover()
@@ -11,16 +8,6 @@ def main():
 
     left_side_speed = 7
     right_side_speed = 7
-    time.sleep(sec)
-    left_side_speed = 0
-    right_side_speed = 0
-    time.sleep(sec)
-    left_side_speed = 7
-    right_side_speed = -7
-    time.sleep(sec)
-    left_side_speed = 0
-    right_side_speed = 0
-    time.sleep(sec)
 
     while i < 3000:
         #print("X: " + rover.x + " Y: " + rover.y + " Heading: " + rover.heading)
@@ -32,15 +19,8 @@ def main():
                 #print("TOO CLOSE")
         rover.send_command(left_side_speed, right_side_speed)
         i = i + 1
-        time.sleep(sec)
-        
-    left_side_speed = 7
-    right_side_speed = -7
-    time.sleep(sec)
-    left_side_speed = 0
-    right_side_speed = 0
-    time.sleep(sec)
-    
-        
+        sleep(0.01)
+
+
 if __name__ == "__main__":
     main()
