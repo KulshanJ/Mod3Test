@@ -6,8 +6,8 @@ def main():
     
     i = 0
 
-    left_side_speed = 20
-    right_side_speed = 20
+    left_side_speed = 7
+    right_side_speed = 7
 
     while i < 3000:
         #print("X: " + rover.x + " Y: " + rover.y + " Heading: " + rover.heading)
@@ -22,5 +22,5 @@ def main():
         sleep(0.01)
 
 
-if __name__ == "__main__":
-    main()
+#if __name__ == "__main__":
+    #main()
