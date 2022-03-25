@@ -33,7 +33,7 @@ left_side_speed = 7
 
 right_side_speed = 7
 
-while i < 300:
+while i < 100:
 
         rover.send_command(left_side_speed, right_side_speed)
 
@@ -45,7 +45,7 @@ left_side_speed = -7
 
 right_side_speed = -7
 
-while i < 300:
+while i < 100:
 
         rover.send_command(left_side_speed, right_side_speed)
 
