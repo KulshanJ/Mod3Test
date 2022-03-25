@@ -18,7 +18,7 @@ from time import sleep
                 #print("TOO CLOSE")
         rover.send_command(left_side_speed, right_side_speed)
         i = i + 1
-        sleep(0.1)
+        sleep(0.01)
 
 
 if __name__ == "__main__":
@@ -33,7 +33,7 @@ left_side_speed = 7
 
 right_side_speed = 7
 
-while i < 3:
+while i < 3000:
 
         rover.send_command(left_side_speed, right_side_speed)
 
@@ -45,7 +45,7 @@ left_side_speed = -7
 
 right_side_speed = -7
 
-while i < 3:
+while i < 3000:
 
         rover.send_command(left_side_speed, right_side_speed)
 
