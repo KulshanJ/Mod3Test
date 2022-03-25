@@ -1,7 +1,7 @@
 from qset_lib import Rover
 from time import sleep
 
-    rover = Rover()
+rover = Rover()
     
     i = 0
 
