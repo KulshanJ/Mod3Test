@@ -19,8 +19,9 @@ def main():
                 #print("TOO CLOSE")
         rover.send_command(left_side_speed, right_side_speed)
         i = i + 1
-        sleep(0.01)
+        sleep(0.1)
 
 
 if __name__ == "__main__":
     main()
+  
