@@ -1,12 +1,14 @@
 from qset_lib import Rover
 from time import sleep
 
-rover = Rover()
+def main():
+    
+    rover = Rover()
     
     i = 0
 
-    left_side_speed = -7
-    right_side_speed = 7
+    left_side_speed = 7
+    right_side_speed = -7
 
     while i < 3000:
         #print("X: " + rover.x + " Y: " + rover.y + " Heading: " + rover.heading)
