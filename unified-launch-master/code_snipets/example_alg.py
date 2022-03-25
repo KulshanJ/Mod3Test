@@ -6,7 +6,7 @@ from time import sleep
     i = 0
 
     left_side_speed = -7
-    right_side_speed = -7
+    right_side_speed = 7
 
     while i < 3000:
         #print("X: " + rover.x + " Y: " + rover.y + " Heading: " + rover.heading)
