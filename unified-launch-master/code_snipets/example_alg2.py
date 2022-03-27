@@ -272,7 +272,7 @@ def backup1(inputDistance) :
     if __name__ == "__stop_check__":
         stop_check()
 
-initialHeadingVector = ...
+initialHeadingVector = 0
 
 #turning
 def backup2(inputDistance) :
