@@ -91,12 +91,12 @@ def distanceChecking1(listOfAlertDistance1, listFromLiDAR):
     '''
 
     listOfDifference = np.array(np.array(listFromLiDAR) - np.array(listOfAlertDistance1)).tolist()
-
+    listOfDifference.sort()
     '''
         Return false if the path is clear ---> keep moving straightforward
         return true if the obstacle is within its path ---> need further actions
     '''
-    return listOfDifference, any(n < 0 for n in listOfDifference)
+    return listOfDifference[0], any(n < 0 for n in listOfDifference)
 
 '''
 flag will be defined in main function
@@ -376,7 +376,7 @@ def main():
     while i < 3000:
         rover.send_command(left_side_speed, right_side_speed)
         
-        listOfDistance, result = distanceChecking1(listOfAlertDistance1, rover.laser_distance) 
+        closestDistance, result = distanceChecking1(listOfAlertDistance1, rover.laser_distance) 
         
         stop_check()
         
