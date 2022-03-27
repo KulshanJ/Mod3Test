@@ -255,7 +255,75 @@ def stop_check():
 
 
 
+#BACKUP
 
+#reversing
+def backup1(inputDistance) :
+
+    i = -1
+    j = -1
+    left_side_speed = i
+    right_side_speed = j
+
+    rover.send_command(left_side_speed, right_side_speed)
+
+    #call Eden's function
+    if __name__ == "__stop_check__":
+        stop_check()
+
+initialHeadingVector = ...
+
+#turning
+def backup2(inputDistance) :
+
+    while 1:
+
+        i = 1
+        j = -1
+
+        left_side_speed = i
+        right_side_speed = j
+
+        rover.send_command(left_side_speed, right_side_speed)
+
+        #rotate 45 ccw, check if initial/final heading vectors equal
+
+        if initialHeadingVector == finalHeadingVector :
+            break
+
+        i = -1
+        j = 1
+
+        left_side_speed = i
+        right_side_speed = j
+
+        rover.send_command(left_side_speed, right_side_speed)
+
+        # rotate 45 cw, check if initial/final heading vectors equal
+        if initialHeadingVector == finalHeadingVector:
+            break
+
+    while 1 :
+
+        sleeptime = 5
+
+        left_side_speed = 1
+        right_side_speed = 1
+
+        time.sleep(sleeptime)
+
+        rover.send_command(left_side_speed, right_side_speed)
+
+        #call in Sean's function
+
+
+    #reorient, use Sean's function
+
+
+    #call Eden's function
+
+    if __name__ == "__stop_check__":
+        stop_check()
 
 
 
