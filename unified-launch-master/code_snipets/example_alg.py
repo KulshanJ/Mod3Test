@@ -13,7 +13,7 @@ def main():
     left_side_speed = 7
     right_side_speed = -7
     
-    #rover.__modelstates_callback(msg)
+    rover.__modelstates_callback()
 
     while i < 1000:
         #print("X: " + rover.x + " Y: " + rover.y + " Heading: " + rover.heading)
@@ -26,7 +26,7 @@ def main():
                     
 
                 
-        rover.ssend_command(left_side_speed, right_side_speed)
+        rover.send_command(left_side_speed, right_side_speed)
         i = i + 1
         sleep(0.01)
 
