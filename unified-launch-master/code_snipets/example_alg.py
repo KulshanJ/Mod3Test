@@ -40,7 +40,7 @@ def main():
             if dist < 2:
                     #left_side_speed = -7
                     #right_side_speed = -7
-                    print(__modelstates_callback(self, msg))
+                    print(__modelstates_callback(msg))
                     
 
                 
