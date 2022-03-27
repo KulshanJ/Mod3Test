@@ -145,7 +145,7 @@ def stop_check():
 
     # call on lidar function to determine distance from object
     Lidar_Coordinate_Code()
-    if xcoord >=-0.7 and xcoord<=0.7
+    if xcoord >=-0.7 and xcoord <= 0.7
         objectdist = ycoord
         if objectdist <= closestdist:
             left_side_speed = 0
