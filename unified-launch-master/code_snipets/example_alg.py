@@ -9,13 +9,7 @@ from sensor_msgs.msg import LaserScan
 import math
 from tf.transformations import euler_from_quaternion
 
-
-
-def main():
-    
-    rover = Rover()
-    
-    i = 0
+ def __modelstates_callback(self, msg):
     
     for name, pose in zip(msg.name, msg.pose):
             if name == self.__name:
@@ -25,7 +19,13 @@ def main():
     heading = euler_from_quaternion([pose.orientation.x, pose.orientation.y, pose.orientation.z,
                                                       pose.orientation.w])[2] / math.pi * 180.0
 
+
+def main():
     
+    rover = Rover()
+    
+    i = 0
+       
     #heading = rover.heading
 
     left_side_speed = 7
