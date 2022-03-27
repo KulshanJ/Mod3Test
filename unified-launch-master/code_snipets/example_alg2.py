@@ -136,7 +136,7 @@ flag == 0 && false: all is clear ---> move forward
 
 
 
-def stop_check(closestDistance):
+def stop_check():
     # variables for sleep time, speed, stopping distance, minimum tolerated distance
     speed = 1
     sleeptime = 2
