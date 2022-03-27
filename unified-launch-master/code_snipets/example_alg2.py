@@ -144,9 +144,7 @@ def stop_check():
     mindist = 2
 
     # call on lidar function to determine distance from object
-    Lidar_Coordinate_Code()
-    if xcoord >=-0.7 and xcoord <= 0.7
-        objectdist = ycoord
+        objectdist = closestdistance #not to be confused with closestdist... this calls on Sean's function
         if objectdist <= closestdist:
             left_side_speed = 0
             right_side_speed = 0
@@ -155,9 +153,8 @@ def stop_check():
             # call on turning function to rotate 45 degrees ccw
             turningfunction(-45)
             # call on lidar function to determine distance from object
-            Lidar_Coordinate_Code()
-            if xcoord >=-0.7 and xcoord <= 0.7
-                ccw45dist = ycoord
+            if closestdist < 10:
+                ccw45dist = closestdistance
             else:
                 ccw45dist = 10
 
@@ -166,9 +163,8 @@ def stop_check():
 
             # call on turning rotate 45 ccw
             turningfunction(-45)
-            Lidar_Coordinate_Code()
-            if xcoord >= -0.7 and xcoord <= 0.7
-                ccw90dist = ycoord
+            if closestdistance < 10:
+                ccw90dist = closestdistance
             else:
                 ccw90dist = 10
             if  ccw90dist > greatestdist:
@@ -176,9 +172,8 @@ def stop_check():
 
             # call on turning rotate 180 cw
             turningfunction(180)
-            Lidar_Coordinate_Code()
-            if xcoord >= -0.7 and xcoord <= 0.7
-                ccw90dist = ycoord
+            if closestdistance < 10:
+                ccw90dist = closestdistance
             else:
                 ccw90dist = 10
             if cw90dist > greatestdist:
@@ -186,8 +181,8 @@ def stop_check():
 
             # call on turning rotate 45 ccw
             turningfunction(-45)
-            if xcoord >= -0.7 and xcoord <= 0.7
-                cw45dist = ycoord
+            if closestdistance < 10:
+                cw45dist = closestdistance
             else:
                 cw45dist = 10
             if cw45dist > greatestdist:
@@ -201,8 +196,8 @@ def stop_check():
             # mindist, call on Lucas's function
 
             if cw45dist <= mindist & cw90dist <= mindist & ccw90dist <= mindist & ccw45dist <= mindist:
+                # call on Lucas's function
                 backup1()
-                break
 
             else:
                 if ccw45dist > 5:
