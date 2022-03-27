@@ -35,7 +35,7 @@ def main():
     right_side_speed = -7
 
     while i < 1000:
-        print("X: " + rover.x + " Y: " + rover.y + " Heading: " + rover.heading)
+        print("X: " + str(rover.x) + " Y: " + str(rover.y) + " Heading: " + str(rover.heading))
 
         for dist in rover.laser_distances:
             if dist < 2:
