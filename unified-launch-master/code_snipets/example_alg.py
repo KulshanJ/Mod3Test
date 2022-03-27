@@ -9,20 +9,20 @@ def main():
     i = 0
     
     heading = 1
+    
+    #heading = rover.heading
 
     left_side_speed = 7
     right_side_speed = -7
-    
-    rover.__modelstates_callback()
 
     while i < 1000:
         #print("X: " + rover.x + " Y: " + rover.y + " Heading: " + rover.heading)
 
         for dist in rover.laser_distances:
             if dist < 2:
-                    left_side_speed = -7
+                    #left_side_speed = -7
                     #right_side_speed = -7
-                    #print(heading)
+                    print(heading)
                     
 
                 
