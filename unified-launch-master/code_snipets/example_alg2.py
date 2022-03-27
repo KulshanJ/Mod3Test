@@ -251,7 +251,7 @@ def main():
     
     rover = Rover()
     
-    i = 0
+    #orient the rover to head towards the destination
 
     left_side_speed = 7
     right_side_speed = 7
