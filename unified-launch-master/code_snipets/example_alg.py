@@ -11,7 +11,7 @@ def main():
     left_side_speed = 7
     right_side_speed = -7
     
-    heading = rover.heading
+    pose.position.x = rover.pose.position.x
 
     while i < 1000:
         #print("X: " + rover.x + " Y: " + rover.y + " Heading: " + rover.heading)
@@ -20,7 +20,7 @@ def main():
             if dist < 2:
                     #left_side_speed = -7
                     #right_side_speed = -7
-                    print(heading)
+                    print(pose.position.x)
                     
 
                 
