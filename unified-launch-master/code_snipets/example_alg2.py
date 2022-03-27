@@ -201,7 +201,8 @@ def stop_check():
             # mindist, call on Lucas's function
 
             if cw45dist <= mindist & cw90dist <= mindist & ccw90dist <= mindist & ccw45dist <= mindist:
-            # call on Lucas's function
+                backup1()
+                break
 
             else:
                 if ccw45dist > 5:
