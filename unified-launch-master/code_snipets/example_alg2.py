@@ -5,20 +5,23 @@ import math
 import numpy as np
 
 
-def angleFinding(previousPosition, currentPosition):
+def angleFindingByTwoLists(previousPosition, currentPosition):
     '''
     Previous ---> tail of the vector
     Current ---> head of the vector
     '''
-    reference = np.array([0,1])
 
     '''
-    Finding the heading vector
+    Findingh the heading vector
     '''
     m = np.array(previousPosition)
     n = np.array(currentPosition)
-    vector = np.subtract(n,m)
+    vector = np.subtract(n, m)
+    return angleOfHeadingVector(vector)
 
+
+def angleFindingByVector(vector):
+    reference = np.array([0, 1])
 
     '''
     According to vector dot product rule, calculate the angle between the vector and the reference vector
@@ -32,16 +35,16 @@ def angleFinding(previousPosition, currentPosition):
     but the angle returned is always the smaller one
     So we check here to see if the vector is in 1/4 quadrant or 2/3 quadrant
     '''
-    checkingVector = np.array([1,0])
-    check = np.dot(checkingVector,vector)
+    checkingVector = np.array([1, 0])
+    check = np.dot(checkingVector, vector)
 
     '''
     Convert the small angle in 2/3 quadrant to the big angle we want
     '''
     if check < 0:
-        angle= 2* math.pi - angle
-
+        angle = 2 * math.pi - angle
     return math.degrees(angle)
+
 
 
 
