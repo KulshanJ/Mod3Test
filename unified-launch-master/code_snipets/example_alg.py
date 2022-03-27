@@ -11,7 +11,7 @@ def main():
     left_side_speed = 7
     right_side_speed = -7
     
-    x = rover.pose.position.x
+    x = rover.position.x
 
     while i < 1000:
         #print("X: " + rover.x + " Y: " + rover.y + " Heading: " + rover.heading)
