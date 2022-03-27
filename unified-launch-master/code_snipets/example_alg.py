@@ -16,7 +16,7 @@ def __modelstates_callback(self, msg):
                 self.x = pose.position.x
                 self.y = pose.position.y
 
-    heading = euler_from_quaternion([pose.orientation.x, pose.orientation.y, pose.orientation.z,
+    global heading = euler_from_quaternion([pose.orientation.x, pose.orientation.y, pose.orientation.z,
                                                       pose.orientation.w])[2] / math.pi * 180.0
 
 
