@@ -153,7 +153,7 @@ def stop_check():
             # call on turning function to rotate 45 degrees ccw
             turningfunction(-45)
             # call on lidar function to determine distance from object
-            if closestdist < 10:
+            if closestdistance < 10:
                 ccw45dist = closestdistance
             else:
                 ccw45dist = 10
