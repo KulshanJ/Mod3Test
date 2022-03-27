@@ -8,9 +8,11 @@ def main():
     
     i = 0
     
-    heading = 1
+    heading = euler_from_quaternion([pose.orientation.x, pose.orientation.y, pose.orientation.z,
+                                                      pose.orientation.w])[2] / math.pi * 180.0
+
     
-    heading = rover.heading
+    #heading = rover.heading
 
     left_side_speed = 7
     right_side_speed = -7
