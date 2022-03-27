@@ -271,26 +271,21 @@ def main():
     angleOfRoverHead = angleOfHeadingVector(headVector)
     turning(pathDecision(angleOfRoverHead, angleOfHeadingVector))
 
-    '''
-    Move forward and scanning before bumping into obstacles
-    '''
-    
-    
-    
-    
-    
-    left_side_speed = 7
-    right_side_speed = 7
+ 
+    #Step2: Move forward and scanning before bumping into obstacles
+   
+    left_side_speed = 1
+    right_side_speed = 1
 
     while i < 3000:
-        #print("X: " + rover.x + " Y: " + rover.y + " Heading: " + rover.heading)
-
-        for dist in rover.laser_distances:
-            if dist < 0.5:
-                    left_side_speed = -7
-                    right_side_speed = -7
-                #print("TOO CLOSE")
         rover.send_command(left_side_speed, right_side_speed)
+        
+        listOfDistance, result = distanceChecking1(listOfAlertDistance1, rover.laser_distance) 
+        if result == true:
+            stop_check()
+        
+            
+        
         i = i + 1
         sleep(0.01)
 
