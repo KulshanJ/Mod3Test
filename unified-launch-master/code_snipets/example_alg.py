@@ -9,7 +9,7 @@ from sensor_msgs.msg import LaserScan
 import math
 from tf.transformations import euler_from_quaternion
 
-def __modelstates_callback(msg):
+def __modelstates_callback():
         
     for name, pose in zip(msg.name, msg.pose):
             if name == self.__name:
