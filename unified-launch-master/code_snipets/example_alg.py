@@ -17,6 +17,11 @@ def main():
     
     i = 0
     
+    for name, pose in zip(msg.name, msg.pose):
+            if name == self.__name:
+                self.x = pose.position.x
+                self.y = pose.position.y
+
     heading = euler_from_quaternion([pose.orientation.x, pose.orientation.y, pose.orientation.z,
                                                       pose.orientation.w])[2] / math.pi * 180.0
 
