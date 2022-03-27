@@ -309,8 +309,7 @@ def main():
         
         listOfDistance, result = distanceChecking1(listOfAlertDistance1, rover.laser_distance) 
         
-        if result == true:
-            stop_check()
+        stop_check()
         
             
         
