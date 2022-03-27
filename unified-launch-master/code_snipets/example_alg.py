@@ -10,9 +10,7 @@ import math
 from tf.transformations import euler_from_quaternion
 
 def __modelstates_callback(self, msg):
-    
-    global heading
-    
+        
     for name, pose in zip(msg.name, msg.pose):
             if name == self.__name:
                 self.x = pose.position.x
@@ -20,6 +18,8 @@ def __modelstates_callback(self, msg):
 
                 heading = euler_from_quaternion([pose.orientation.x, pose.orientation.y, pose.orientation.z,
                                                       pose.orientation.w])[2] / math.pi * 180.0
+                
+                return heading
 
 
 def main():
@@ -40,7 +40,7 @@ def main():
             if dist < 2:
                     #left_side_speed = -7
                     #right_side_speed = -7
-                    print(heading)
+                    print(__modelstates_callback(self, msg))
                     
 
                 
