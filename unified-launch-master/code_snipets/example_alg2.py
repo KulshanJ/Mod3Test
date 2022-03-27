@@ -260,8 +260,25 @@ def main():
     
     rover = Rover()
     
-    #orient the rover to head towards the destination
+    #Step1: orient the rover to head towards the destination
+    '''Call function to get current position and head vector'''
+    currentPosition = [rover.x, rover.y]
+    headVector = 
 
+    
+    '''Find angles and make orientation'''
+    angleOfHeadingVector = angleFindingByTwoLists(currentPosition, destinationList)
+    angleOfRoverHead = angleOfHeadingVector(headVector)
+    turning(pathDecision(angleOfRoverHead, angleOfHeadingVector))
+
+    '''
+    Move forward and scanning before bumping into obstacles
+    '''
+    
+    
+    
+    
+    
     left_side_speed = 7
     right_side_speed = 7
 
