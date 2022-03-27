@@ -26,7 +26,7 @@ def main():
                     
 
                 
-        rover.ssend_command(left_side_speed, right_side_speed)
+        rover.send_command(left_side_speed, right_side_speed)
         i = i + 1
         sleep(0.01)
 
