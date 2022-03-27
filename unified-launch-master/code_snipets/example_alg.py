@@ -13,13 +13,13 @@ def main():
     
     heading = rover.heading
 
-    while i < 3000:
+    while i < 1000:
         #print("X: " + rover.x + " Y: " + rover.y + " Heading: " + rover.heading)
 
         for dist in rover.laser_distances:
             if dist < 2:
-                    left_side_speed = -7
-                    right_side_speed = -7
+                    #left_side_speed = -7
+                    #right_side_speed = -7
                     print(heading)
                     
 
