@@ -11,7 +11,7 @@ def main():
     left_side_speed = 7
     right_side_speed = 7
     
-    for heading in rover.heading:
+    heading in rover.heading:
         headingValue = heading
 
     while i < 3000:
