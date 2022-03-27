@@ -9,6 +9,7 @@ from sensor_msgs.msg import LaserScan
 import math
 from tf.transformations import euler_from_quaternion
 
+'''
 def __modelstates_callback(msg):
         
     for name, pose in zip(msg.name, msg.pose):
@@ -20,9 +21,9 @@ def __modelstates_callback(msg):
                                                       pose.orientation.w])[2] / math.pi * 180.0
                 
                 return heading
+'''
 
-
-def main(msg):
+def main():
     
     rover = Rover()
     
@@ -34,15 +35,15 @@ def main(msg):
     right_side_speed = -7
 
     while i < 1000:
-        #print("X: " + rover.x + " Y: " + rover.y + " Heading: " + rover.heading)
+        print("X: " + rover.x + " Y: " + rover.y + " Heading: " + rover.heading)
 
         for dist in rover.laser_distances:
             if dist < 2:
                     #left_side_speed = -7
-                    #right_side_speed = -7
-                    print(__modelstates_callback(msg))
+                    right_side_speed = -7
+                    #print()
                     
-
+#__modelstates_callback(msg)
                 
         rover.send_command(left_side_speed, right_side_speed)
         i = i + 1
@@ -50,4 +51,4 @@ def main(msg):
 
 
 if __name__ == "__main__":
-    main(msg)
+    main()
