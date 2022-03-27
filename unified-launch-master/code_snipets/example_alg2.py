@@ -41,7 +41,7 @@ def angleFinding(previousPosition, currentPosition):
     if check < 0:
         angle= 2* math.pi - angle
 
-    return angle
+    return math.degrees(angle)
 
 
 
