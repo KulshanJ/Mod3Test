@@ -281,6 +281,7 @@ def main():
         rover.send_command(left_side_speed, right_side_speed)
         
         listOfDistance, result = distanceChecking1(listOfAlertDistance1, rover.laser_distance) 
+        
         if result == true:
             stop_check()
         
