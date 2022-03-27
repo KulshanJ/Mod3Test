@@ -21,7 +21,7 @@ def main():
             if dist < 0.5:
                     left_side_speed = -7
                     right_side_speed = -7
-                    print(heading)
+                    print(headingValue)
                     
 
                 
