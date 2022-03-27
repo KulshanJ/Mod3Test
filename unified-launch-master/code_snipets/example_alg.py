@@ -50,4 +50,4 @@ def main(msg):
 
 
 if __name__ == "__main__":
-    main()
+    main(msg)
