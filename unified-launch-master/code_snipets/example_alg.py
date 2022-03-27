@@ -11,7 +11,7 @@ def main():
     left_side_speed = 7
     right_side_speed = 7
     
-    __modelstates_callback(self, msg)
+    heading = rover.heading
 
     while i < 3000:
         #print("X: " + rover.x + " Y: " + rover.y + " Heading: " + rover.heading)
