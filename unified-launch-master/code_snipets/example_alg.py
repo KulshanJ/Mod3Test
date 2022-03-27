@@ -10,6 +10,9 @@ def main():
 
     left_side_speed = 7
     right_side_speed = 7
+    
+    for heading in rover.heading:
+        headingValue = heading
 
     while i < 3000:
         #print("X: " + rover.x + " Y: " + rover.y + " Heading: " + rover.heading)
@@ -18,9 +21,9 @@ def main():
             if dist < 0.5:
                     left_side_speed = -7
                     right_side_speed = -7
+                    print(heading)
                     
-                    for heading in rover.heading:
-                        print(heading)
+
                 
         rover.send_command(left_side_speed, right_side_speed)
         i = i + 1
