@@ -9,7 +9,7 @@ def main():
     i = 0
 
     left_side_speed = 7
-    right_side_speed = 7
+    right_side_speed = -7
     
     heading = rover.heading
 
