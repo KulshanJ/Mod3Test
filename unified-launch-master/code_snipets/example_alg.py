@@ -15,7 +15,7 @@ def main():
         #print("X: " + rover.x + " Y: " + rover.y + " Heading: " + rover.heading)
 
         for dist in rover.laser_distances:
-            if dist < 1:
+            if dist < 0.5:
                     left_side_speed = -7
                     right_side_speed = -7
                 #print("TOO CLOSE")
