@@ -421,6 +421,9 @@ def main():
         
         i = i + 1
         sleep(0.01)
+        
+        if rover.x == destinationList[0] and rover.y == destinationList[1]:
+            break
 
 
 if __name__ == "__main__":
