@@ -365,8 +365,8 @@ def main():
     listOfDistance2 = [roverRange / math.sin(math.pi/4)]
     i = 2
     while i <= 32:
-    listOfDistance2.append(roverRange / math.sin((math.pi/4) + (deltaAngle*(i-1))))
-    i += 1
+        listOfDistance2.append(roverRange / math.sin((math.pi/4) + (deltaAngle*(i-1))))
+        i += 1
     
     #Step1: orient the rover to head towards the destination
     '''Call function to get current position and head vector'''
