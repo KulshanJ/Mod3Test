@@ -179,7 +179,7 @@ def stop_check():
 
     # call on lidar function to determine distance from object
     objectdist = closestdistance #not to be confused with closestdist... this calls on Sean's function
-        if objectdist <= closestdist:
+    if objectdist <= closestdist:
             left_side_speed = 0
             right_side_speed = 0
             rover.send_command(left_side_speed, right_side_speed)
