@@ -10,7 +10,7 @@ def main():
     left_side_speed = 2
     right_side_speed = -2
 
-    while i < 10:
+    while i < 30:
         print("X: " + str(rover.x) + " Y: " + str(rover.y) + " Heading: " + str(rover.heading))
 
         for dist in rover.laser_distances:
@@ -21,7 +21,7 @@ def main():
                 
         rover.send_command(left_side_speed, right_side_speed)
         i = i + 1
-        sleep(1.01)
+        sleep(0.5)
 
 
 if __name__ == "__main__":
