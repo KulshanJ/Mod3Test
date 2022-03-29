@@ -107,7 +107,11 @@ def distanceChecking1(listOfAlertDistance1, listFromLiDAR):
     Calculate the delta distance and will return a list containing the difference
     '''
 
-    listOfDifference = (np.array(listFromLiDAR) - np.array(listOfAlertDistance1)).tolist()
+    listOfDifference = listFromLiDAR[0] - listOfAlertDistance1[0] 
+    i = 0
+    while i < 32:
+      listOfDistance1.append(listFromLiDAR[i] - listOfAlertDistance1[i])
+      i += 1
     listOfDifference.sort()
     '''
         Return false if the path is clear ---> keep moving straightforward
@@ -123,8 +127,12 @@ def distanceChecking2(listOfAlertDistance2, listFromLiDAR, flag):
     '''
     Calculate the delta distance and will return a list containing the difference
     '''
-    listOfDifference = (np.array(listFromLiDAR) - np.array(listOfAlertDistance2)).tolist()
-
+   listOfDifference = listFromLiDAR[0] - listOfAlertDistance2[0] 
+    i = 0
+    while i < 32:
+      listOfDistance1.append(listFromLiDAR[i] - listOfAlertDistance2[i])
+      i += 1
+  
     if any(n < 0 for n in listOfDifference) == True:
         '''means something is in the turning radius'''
         flag = flag + 1
