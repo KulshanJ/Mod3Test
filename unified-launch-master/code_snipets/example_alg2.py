@@ -283,7 +283,7 @@ def stop_check(closestdistance):
 #BACKUP
 
 #reversing
-def backup1(inputDistance) :
+def backup1() :
 
     i = -1
     j = -1
@@ -299,7 +299,7 @@ def backup1(inputDistance) :
 initialHeadingVector = 0
 
 #turning
-def backup2(inputDistance) :
+def backup2() :
 
     while 1:
 
