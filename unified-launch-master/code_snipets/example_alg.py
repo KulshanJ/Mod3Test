@@ -18,6 +18,8 @@ def main():
     while i < 1000:
         #print("X: " + str(rover.x) + " Y: " + str(rover.y) + " Heading: " + str(rover.heading))
         
+        for dist in rover.laser_distances:
+            listOfLiDAR.append(dist)
         print(listOfLiDAR)         
                 
         rover.send_command(left_side_speed, right_side_speed)
