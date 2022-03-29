@@ -93,26 +93,7 @@ def turningFunction(angle):
 
 
 
-'''
-Calculating the alert distance for each of the 32 'lines'
-Set the list as global
-'''
-roverWidth = 0.61
-listOfDistance1 = [roverWidth / math.sin(math.pi/4)]
-i = 2
-deltaAngle = math.pi/(2*31)
-while i <= 32:
-    listOfDistance1.append(roverWidth / math.sin((math.pi/4) + (deltaAngle*(i-1))))
-    i += 1
 
-
-
-roverRange = math.sqrt(0.61**2 + 0.61 ** 2)
-listOfDistance2 = [roverRange / math.sin(math.pi/4)]
-i = 2
-while i <= 32:
-    listOfDistance2.append(roverRange / math.sin((math.pi/4) + (deltaAngle*(i-1))))
-    i += 1
 
 
 def pathDecision(currentAngle, desiredAngle):
@@ -363,6 +344,29 @@ destinationList = [100, 100]
 def main():
     
     rover = Rover()
+    
+    
+    
+    '''
+    Calculating the alert distance for each of the 32 'lines'
+    Set the list as global
+    '''
+    roverWidth = 0.61
+    listOfDistance1 = [roverWidth / math.sin(math.pi/4)]
+    i = 2
+    deltaAngle = math.pi/(2*31)
+    while i <= 32:
+      listOfDistance1.append(roverWidth / math.sin((math.pi/4) + (deltaAngle*(i-1))))
+      i += 1
+
+
+
+     roverRange = math.sqrt(0.61**2 + 0.61 ** 2)
+     listOfDistance2 = [roverRange / math.sin(math.pi/4)]
+     i = 2
+     while i <= 32:
+        listOfDistance2.append(roverRange / math.sin((math.pi/4) + (deltaAngle*(i-1))))
+        i += 1
     
     #Step1: orient the rover to head towards the destination
     '''Call function to get current position and head vector'''
