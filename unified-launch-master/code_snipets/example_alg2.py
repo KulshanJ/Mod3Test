@@ -361,7 +361,7 @@ def main():
     '''
     roverWidth = 0.61
     listOfDistance1 = [roverWidth / math.sin(math.pi/4)]
-    i = 2
+    i = 1
     deltaAngle = math.pi/(2*31)
     while i <= 32:
       listOfDistance1.append(roverWidth / math.sin((math.pi/4) + (deltaAngle*(i-1))))
@@ -371,7 +371,7 @@ def main():
 
     roverRange = math.sqrt(0.61**2 + 0.61 ** 2)
     listOfDistance2 = [roverRange / math.sin(math.pi/4)]
-    i = 2
+    i = 1
     while i <= 32:
         listOfDistance2.append(roverRange / math.sin((math.pi/4) + (deltaAngle*(i-1))))
         i += 1
