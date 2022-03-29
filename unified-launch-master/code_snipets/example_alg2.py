@@ -375,6 +375,7 @@ def main():
     angleOfRoverHead = angleFindingByVector(headVector)
     turningFunction(pathDecision(angleOfRoverHead, angleOfHeadingVector))
 
+    i = 0
  
     #Step2: Move forward and scanning before bumping into obstacles
    
