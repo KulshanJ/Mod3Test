@@ -109,7 +109,7 @@ def distanceChecking1(listOfAlertDistance1, listFromLiDAR):
 
     listOfDifference = [] 
     i = 0
-    while i < 32:
+    while i < 30:
       listOfDifference.append(listFromLiDAR[i] - listOfAlertDistance1[i])
       i += 1
     listOfDifference.sort()
@@ -129,7 +129,7 @@ def distanceChecking2(listOfAlertDistance2, listFromLiDAR, flag):
     '''
     listOfDifference = [] 
     i = 0
-    while i < 32:
+    while i < 30:
         listOfDifference.append(listFromLiDAR[i] - listOfAlertDistance2[i])
         i += 1
   
@@ -360,19 +360,19 @@ def main():
     Set the list as global
     '''
     roverWidth = 0.61
-    listOfDistance1 = [roverWidth / math.sin(math.pi/4)]
-    i = 1
-    deltaAngle = math.pi/(2*31)
-    while i < 32:
+    listOfDistance1 = []
+    i = 0
+    deltaAngle = math.pi/(2*29)
+    while i < 30:
       listOfDistance1.append(roverWidth / math.sin((math.pi/4) + (deltaAngle*(i))))
       i += 1
 
 
 
     roverRange = math.sqrt(0.61**2 + 0.61 ** 2)
-    listOfDistance2 = [roverRange / math.sin(math.pi/4)]
-    i = 1
-    while i < 32:
+    listOfDistance2 = []
+    i = 0
+    while i < 30:
         listOfDistance2.append(roverRange / math.sin((math.pi/4) + (deltaAngle*(i))))
         i += 1
     
