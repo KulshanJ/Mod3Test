@@ -404,7 +404,7 @@ def main():
         for dist in rover.laser_distances:
             if dist<100:
                 listOfLiDAR.append(dist)
-            elif:
+            else:
                 listOfLiDAR.append(100)
            
         closestDistance, result = distanceChecking1(listOfDistance1, listOfLiDAR ) 
