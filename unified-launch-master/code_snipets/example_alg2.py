@@ -361,7 +361,7 @@ def main():
 
 
 
-     roverRange = math.sqrt(0.61**2 + 0.61 ** 2)
+        roverRange = math.sqrt(0.61**2 + 0.61 ** 2)
      listOfDistance2 = [roverRange / math.sin(math.pi/4)]
      i = 2
      while i <= 32:
