@@ -163,7 +163,7 @@ flag == 0 && false: all is clear ---> move forward
 
 
 
-def stop_check():
+def stop_check(closetdistance):
     # variables for sleep time, speed, stopping distance, minimum tolerated distance
     speed = 1
     sleeptime = 2
@@ -410,9 +410,9 @@ def main():
            
         closestDistance, result = distanceChecking1(listOfDistance1, listOfLiDAR ) 
         flag = distanceChecking2(listOfDistance2, listOfLiDAR, flag)
-        if (flag == 1 or flag == 0 ) and result == True:
-            stop_check()
-        elif flag > 1:
+        if result == True:
+            stop_check(closestDistance)
+        #elif flag > 1:
             #Call Lucas's function
         
         
