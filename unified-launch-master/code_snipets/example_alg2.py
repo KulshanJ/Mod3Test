@@ -202,9 +202,9 @@ def stop_check(closestdistance):
             # call on turning rotate 180 cw
             turningFunction(180)
             if closestdistance < 10:
-                ccw90dist = closestdistance
+                cw90dist = closestdistance
             else:
-                ccw90dist = 10
+                cw90dist = 10
             if cw90dist > greatestdist:
                 greatestdist = cw90dist
 
