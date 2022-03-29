@@ -57,11 +57,10 @@ def pathDecision(currentAngle, desiredAngle):
 
 def turningFunction(angle):
     # if cw
-    if angle > 0:
+    if angle < 0:
         # calculate the new desired vector
-        reference = np.array([0,1])
         heading = rover.heading
-        dotProduct = cos(angle) * (np.linalg.norm(heading))
+        desiredHeading = heading + angle
         # turn right wheel backwards and left forwards
         left_side_speed = 1
         right_side_speed = -1
@@ -69,9 +68,8 @@ def turningFunction(angle):
     # if ccw
     else:
         # calculate the new desired vector
-        reference = np.array([0, 1])
         heading = rover.heading
-        dotProduct = cos(angle) * (np.linalg.norm(heading))
+        desiredHeading = heading + angle
         # turn right wheel forwards and left backwards
         left_side_speed = -1
         right_side_speed = 1
