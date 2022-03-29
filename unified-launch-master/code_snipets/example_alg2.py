@@ -370,7 +370,7 @@ def main():
     
     '''Find angles and make orientation'''
     angleOfHeadingVector = angleFindingByTwoLists(currentPosition, destinationList)
-    angleOfRoverHead = angleOfHeadingVector(headVector)
+    angleOfRoverHead = angleFindingByVector(headVector)
     turningFunction(pathDecision(angleOfRoverHead, angleOfHeadingVector))
 
  
