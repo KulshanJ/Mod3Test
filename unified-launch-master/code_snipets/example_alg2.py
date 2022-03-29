@@ -284,6 +284,8 @@ def stop_check(closestdistance):
 
 #reversing
 def backup1() :
+    
+    rover = Rover()
 
     i = -1
     j = -1
@@ -301,6 +303,8 @@ initialHeadingVector = 0
 #turning
 def backup2() :
 
+    rover = Rover()
+    
     while 1:
 
         i = 1
