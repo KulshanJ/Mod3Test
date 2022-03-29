@@ -11,7 +11,7 @@ def main():
     right_side_speed = 7
 
     while i < 1000:
-        #print("X: " + str(rover.x) + " Y: " + str(rover.y) + " Heading: " + str(rover.heading))
+        print("X: " + str(rover.x) + " Y: " + str(rover.y) + " Heading: " + str(rover.heading))
 
         
                   
