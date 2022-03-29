@@ -166,6 +166,7 @@ def stop_check(closestDistance):
 
     # call on lidar function to determine distance from object
     objectdist = closestDistance #not to be confused with closestdist... this calls on Sean's function
+    print(1)
     if objectdist <= closestdist:
             left_side_speed = 0
             right_side_speed = 0
