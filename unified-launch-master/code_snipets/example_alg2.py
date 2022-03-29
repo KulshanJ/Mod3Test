@@ -75,8 +75,8 @@ def turningFunction(angle):
     # if ccw
     else:
         # calculate the new desired vector
-        heading1 = rover.heading
-        heading = angleConvertion(heading1)
+        heading = rover.heading
+        heading = angleConvertion(heading)
         
         desiredHeading = heading + angle
         # turn right wheel forwards and left backwards
@@ -84,7 +84,7 @@ def turningFunction(angle):
         right_side_speed = 1
         rover.send_command(left_side_speed, right_side_speed)
     # if heading = new desired vector set wheels to 0
-    if heading = desiredHeading:
+    if heading == desiredHeading:
         left_side_speed = 0
         right_side_speed = 0
         rover.send_command(left_side_speed, right_side_speed)
