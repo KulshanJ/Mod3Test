@@ -60,7 +60,8 @@ def turningFunction(angle):
     if angle > 0:
         # calculate the new desired vector
         reference = np.array([0,1])
-        
+        heading = rover.heading
+        dotProduct = cos(angle) * (np.linalg.norm(heading))
         # turn right wheel backwards and left forwards
         left_side_speed = 1
         right_side_speed = -1
@@ -69,12 +70,13 @@ def turningFunction(angle):
     else:
         # calculate the new desired vector
         reference = np.array([0, 1])
+        heading = rover.heading
+        dotProduct = cos(angle) * (np.linalg.norm(heading))
         # turn right wheel forwards and left backwards
         left_side_speed = -1
         right_side_speed = 1
         rover.send_command(left_side_speed, right_side_speed)
     # if heading = new desired vector set wheels to 0
-    heading = rover.heading
     if heading = desiredHeading:
         left_side_speed = 0
         right_side_speed = 0
