@@ -107,8 +107,8 @@ def distanceChecking1(listOfAlertDistance1, listFromLiDAR):
     Calculate the delta distance and will return a list containing the difference
     '''
 
-    listOfDifference = np.array(np.array(listFromLiDAR) - np.array(listOfAlertDistance1)).tolist()
-    listOfDifference.sort()
+    listOfDifference = 2#np.array(np.array(listFromLiDAR) - np.array(listOfAlertDistance1)).tolist()
+    #listOfDifference.sort()
     '''
         Return false if the path is clear ---> keep moving straightforward
         return true if the obstacle is within its path ---> need further actions
