@@ -178,7 +178,7 @@ def stop_check():
     mindist = 2
 
     # call on lidar function to determine distance from object
-        objectdist = closestdistance #not to be confused with closestdist... this calls on Sean's function
+    objectdist = closestdistance #not to be confused with closestdist... this calls on Sean's function
         if objectdist <= closestdist:
             left_side_speed = 0
             right_side_speed = 0
