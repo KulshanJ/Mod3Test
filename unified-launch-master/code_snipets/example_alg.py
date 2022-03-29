@@ -18,7 +18,7 @@ def main():
     while i < 1000:
         #print("X: " + str(rover.x) + " Y: " + str(rover.y) + " Heading: " + str(rover.heading))
         
-        print(str(dist))         
+        print(listOfLiDAR)         
                 
         rover.send_command(left_side_speed, right_side_speed)
         i = i + 1
