@@ -128,16 +128,16 @@ def distanceChecking2(listOfAlertDistance2, listFromLiDAR, flag):
     Calculate the delta distance and will return a list containing the difference
     '''
    listOfDifference = listFromLiDAR[0] - listOfAlertDistance2[0] 
-    i = 0
-    while i < 32:
-      listOfDistance1.append(listFromLiDAR[i] - listOfAlertDistance2[i])
-      i += 1
+   i = 0
+   while i < 32:
+    listOfDistance1.append(listFromLiDAR[i] - listOfAlertDistance2[i])
+    i += 1
   
-    if any(n < 0 for n in listOfDifference) == True:
-        '''means something is in the turning radius'''
-        flag = flag + 1
-    else:
-        flag = 0
+   if any(n < 0 for n in listOfDifference) == True:
+    '''means something is in the turning radius'''
+    flag = flag + 1
+   else:
+    flag = 0
     '''
     If the flag is 1, indicating something is within the turning radius of the rover.
     
@@ -146,7 +146,7 @@ def distanceChecking2(listOfAlertDistance2, listFromLiDAR, flag):
     
     
     '''
-    return flag
+   return flag
 
 '''
 flag == 1 && true : something is in the path as well as the turning radius ---> stop and scan
