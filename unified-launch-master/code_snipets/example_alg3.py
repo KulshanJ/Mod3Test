@@ -390,7 +390,7 @@ def main():
         rover.send_command(left_side_speed, right_side_speed)
         
         flag = 0
-        closestDistance, result = distanceChecking1(listOfDistance1, rover.laser_distances) 
+        #closestDistance, result = distanceChecking1(listOfDistance1, rover.laser_distances) 
         flag = distanceChecking2(listOfDistance2, rover.laser_distanceflag, flag)
         if (flag == 1 or flag == 0 ) and result == True:
             stop_check()
