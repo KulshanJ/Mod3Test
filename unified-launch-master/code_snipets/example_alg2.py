@@ -224,7 +224,7 @@ def stop_check(closestdistance):
             # pick the heading with the greatest distance and travel in that direction. If all distances are less than
             # mindist, call on Lucas's function
 
-            if cw45dist <= mindist & cw90dist <= mindist & ccw90dist <= mindist & ccw45dist <= mindist:
+            if cw45dist <= mindist and cw90dist <= mindist and ccw90dist <= mindist and ccw45dist <= mindist:
                 # call on Lucas's function
                 backup1()
 
