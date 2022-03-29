@@ -107,10 +107,10 @@ def distanceChecking1(listOfAlertDistance1, listFromLiDAR):
     Calculate the delta distance and will return a list containing the difference
     '''
 
-    listOfDifference = [] 
+    listOfDifference = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
     i = 0
     while i < 30:
-      listOfDifference.append(listFromLiDAR[i] - listOfAlertDistance1[i])
+      listOfDifference[i]=listFromLiDAR[i] - listOfAlertDistance1[i]
       i += 1
         
      
@@ -129,10 +129,10 @@ def distanceChecking2(listOfAlertDistance2, listFromLiDAR, flag):
     '''
     Calculate the delta distance and will return a list containing the difference
     '''
-    listOfDifference = [] 
+    listOfDifference = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
     i = 0
     while i < 30:
-        listOfDifference.append(listFromLiDAR[i] - listOfAlertDistance2[i])
+        listOfDifference=listFromLiDAR[i] - listOfAlertDistance2[i]
         i += 1
   
     if any(n < 0 for n in listOfDifference) == True:
@@ -401,13 +401,12 @@ def main():
         
         flag = 0
         
-        listOfLiDAR = []
+        listOfLiDAR = [100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100] 
 
         for dist in rover.laser_distances:
             if dist<100:
-                listOfLiDAR.append(dist)
-            else:
-                listOfLiDAR.append(100)
+                listOfLiDAR[i] = dist
+            
            
         closestDistance, result = distanceChecking1(listOfDistance1, listOfLiDAR ) 
         flag = distanceChecking2(listOfDistance2, listOfLiDAR, flag)
