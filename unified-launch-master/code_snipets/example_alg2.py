@@ -371,7 +371,7 @@ def main():
     '''Find angles and make orientation'''
     angleOfHeadingVector = angleFindingByTwoLists(currentPosition, destinationList)
     angleOfRoverHead = angleFindingByVector(headVector)
-    turningFunction(pathDecision(angleOfRoverHead, angleFindingByVector))
+    turningFunction(pathDecision(angleOfRoverHead, angleFindingOfRoverHead))
 
  
     #Step2: Move forward and scanning before bumping into obstacles
