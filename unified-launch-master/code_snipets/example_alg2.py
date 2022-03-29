@@ -46,13 +46,26 @@ def angleFindingByVector(vector):
     return math.degrees(angle)
 
 
+def angleConvertion(angle):
+    if 0 < angle <= 90 :
+        angle = 90-angle
+    elif 90 < angle <= 180:
+        angle = 360 - (angle - 90)
+    elif -180 < angle <= 0:
+        angle = 90 - angle
+    return angle
+
+
+
+
+
 
 def turningFunction(angle):
     # if cw
     if angle < 0:
         # calculate the new desired vector
         heading = rover.heading
-        
+        heading = angleConvertion(heading)
         
         desiredHeading = heading + angle
         # turn right wheel backwards and left forwards
@@ -63,6 +76,8 @@ def turningFunction(angle):
     else:
         # calculate the new desired vector
         heading = rover.heading
+        heading = angleConvertion(heading)
+        
         desiredHeading = heading + angle
         # turn right wheel forwards and left backwards
         left_side_speed = -1
@@ -98,6 +113,9 @@ while i <= 32:
     i += 1
 
 
+def pathDecision(currentAngle, desiredAngle):
+    angleToTurn = desiredAngle - currentAngle
+    return angleToTurn
 
 
 
@@ -344,7 +362,29 @@ def backup2(inputDistance) :
 
 
 
+# Lidar Section. Outputs lift of x and y coordinates as well as how any obstacles are detected.
+def Lidar_Coordinate_Code():
+        X = 1
+        Counter = 0
+        for dist in rover.laser_distances:
 
+            # Find the theta and laser distance using geometry and the laser call function
+            lasertheta =  (pi/2) - ((X - 1)((pi)/32))
+            laserdist = dist
+
+            if laserdist < 100:
+                # Calculate the x and y only if the sensor reads something. Count how many data points there are
+                 ycoord[X] = laserdist*math.sin(lasertheta)
+                 xcoord[X] = laserdist*math.cos(lasertheta)
+                 X = X + 1
+
+        return ycoord, xcoord, X
+
+    
+    
+    
+destinationList = [100, 100]
+    
     
 def main():
     
@@ -353,13 +393,13 @@ def main():
     #Step1: orient the rover to head towards the destination
     '''Call function to get current position and head vector'''
     currentPosition = [rover.x, rover.y]
-    headVector = 
+    headVector = [math.sin(rover.heading), math.cos(rover.heading)]
 
     
     '''Find angles and make orientation'''
     angleOfHeadingVector = angleFindingByTwoLists(currentPosition, destinationList)
     angleOfRoverHead = angleOfHeadingVector(headVector)
-    turning(pathDecision(angleOfRoverHead, angleOfHeadingVector))
+    turningFunction(pathDecision(angleOfRoverHead, angleOfHeadingVector))
 
  
     #Step2: Move forward and scanning before bumping into obstacles
@@ -370,11 +410,14 @@ def main():
     while i < 3000:
         rover.send_command(left_side_speed, right_side_speed)
         
+        flag = 0
         closestDistance, result = distanceChecking1(listOfAlertDistance1, rover.laser_distance) 
+        flag = distanceChecking2(listOfAlertDistance2, rover.laser_distanceflag, flag)
+        if (flag == 1 or flag == 0 ) and result == True:
+            stop_check()
+        elif flag > 1:
+            #Call Lucas's function
         
-        stop_check()
-        
-            
         
         i = i + 1
         sleep(0.01)
