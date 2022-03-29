@@ -112,6 +112,8 @@ def distanceChecking1(listOfAlertDistance1, listFromLiDAR):
     while i < 30:
       listOfDifference.append(listFromLiDAR[i] - listOfAlertDistance1[i])
       i += 1
+        
+     
     listOfDifference.sort()
     '''
         Return false if the path is clear ---> keep moving straightforward
