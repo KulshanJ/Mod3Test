@@ -102,7 +102,7 @@ def pathDecision(currentAngle, desiredAngle):
 
 
 
-def distanceChecking1(listOfAlertDistance1[], listFromLiDAR[]):
+def distanceChecking1(listOfAlertDistance1, listFromLiDAR):
     '''
     Calculate the delta distance and will return a list containing the difference
     '''
@@ -123,7 +123,7 @@ def distanceChecking1(listOfAlertDistance1[], listFromLiDAR[]):
 flag will be defined in main function
 the value will be set to default(0) after every stop and scan
 '''
-def distanceChecking2(listOfAlertDistance2[], listFromLiDAR[], flag):
+def distanceChecking2(listOfAlertDistance2, listFromLiDAR, flag):
     '''
     Calculate the delta distance and will return a list containing the difference
     '''
