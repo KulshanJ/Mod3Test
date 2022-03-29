@@ -75,7 +75,7 @@ def turningFunction(angle):
     # if ccw
     else:
         # calculate the new desired vector
-        heading = rover.heading
+        heading = Rover.heading
         heading = angleConvertion(heading)
         
         desiredHeading = heading + angle
@@ -371,7 +371,7 @@ def main():
     '''Find angles and make orientation'''
     angleOfHeadingVector = angleFindingByTwoLists(currentPosition, destinationList)
     angleOfRoverHead = angleFindingByVector(headVector)
-    turningFunction(pathDecision(angleOfRoverHead, angleOfHeadingVector))
+    turningFunction(pathDecision(angleOfRoverHead, angleFindingByVector))
 
  
     #Step2: Move forward and scanning before bumping into obstacles
