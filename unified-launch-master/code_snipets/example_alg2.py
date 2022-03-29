@@ -173,6 +173,7 @@ def stop_check(closestDistance):
 
             # call on turning function to rotate 45 degrees ccw
             turningFunction(-45)
+            sleep(1)
             # call on lidar function to determine distance from object
             if closestDistance < 10:
                 ccw45dist = closestDistance
@@ -184,6 +185,7 @@ def stop_check(closestDistance):
 
             # call on turning rotate 45 ccw
             turningFunction(-45)
+            sleep(1)
             if closestDistance < 10:
                 ccw90dist = closestDistance
             else:
@@ -193,6 +195,7 @@ def stop_check(closestDistance):
 
             # call on turning rotate 180 cw
             turningFunction(180)
+            sleep(3)
             if closestDistance < 10:
                 cw90dist = closestDistance
             else:
@@ -202,6 +205,7 @@ def stop_check(closestDistance):
 
             # call on turning rotate 45 ccw
             turningFunction(-45)
+            sleep(1)
             if closestDistance < 10:
                 cw45dist = closestDistance
             else:
@@ -211,6 +215,7 @@ def stop_check(closestDistance):
 
             # call on turning to rotate 45 ccw and return to original position
             turningFunction(-45)
+            sleep(1)
             # now choose which distance to go. If 45 ccw is greater than 5 meters go this way automatically for sleeptime seconds
             # if not, but 45 cw is greater than 5 meters, go this way for sleeptime seconds. If neither of these are true,
             # pick the heading with the greatest distance and travel in that direction. If all distances are less than
@@ -224,6 +229,7 @@ def stop_check(closestDistance):
                 if ccw45dist > 5:
                     # rotate 45 ccw
                     turningFunction(-45)
+                    sleep(1)
                     left_side_speed = speed
                     right_side_speed = speed
                     rover.send_command(left_side_speed, right_side_speed)
@@ -231,6 +237,7 @@ def stop_check(closestDistance):
                 elif cw45dist > 5:
                     # rotate 45 cw
                     turningFunction(45)
+                    sleep(1)
                     left_side_speed = speed
                     right_side_speed = speed
                     rover.send_command(left_side_speed, right_side_speed)
@@ -240,6 +247,7 @@ def stop_check(closestDistance):
                 if greatestdist == cw45dist:
                     # rotate 45 cw
                     turningFunction(45)
+                    sleep(1)
                     left_side_speed = speed
                     right_side_speed = speed
                     rover.send_command(left_side_speed, right_side_speed)
@@ -248,6 +256,7 @@ def stop_check(closestDistance):
                 elif greatestdist == ccw45dist:
                     # rotate 45 ccw
                     turningFunction(-45)
+                    sleep(1)
                     left_side_speed = speed
                     right_side_speed = speed
                     rover.send_command(left_side_speed, right_side_speed)
@@ -256,6 +265,7 @@ def stop_check(closestDistance):
                 elif greatestdist == cw90dist:
                     # rotate 90 cw
                     turningFunction(90)
+                    sleep(1.5)
                     left_side_speed = speed
                     right_side_speed = speed
                     rover.send_command(left_side_speed, right_side_speed)
@@ -264,6 +274,7 @@ def stop_check(closestDistance):
                 elif greatestdist == ccw90dist:
                     # rotate 90 ccw
                     turningFunction(-90)
+                    sleep(1.5)
                     left_side_speed = speed
                     right_side_speed = speed
                     rover.send_command(left_side_speed, right_side_speed)
