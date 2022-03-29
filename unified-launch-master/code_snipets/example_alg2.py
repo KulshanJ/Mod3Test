@@ -155,7 +155,7 @@ flag == 0 && false: all is clear ---> move forward
 
 
 
-def stop_check(closestdistance):
+def stop_check(closestDistance):
     
     rover = Rover()
     # variables for sleep time, speed, stopping distance, minimum tolerated distance
@@ -165,7 +165,7 @@ def stop_check(closestdistance):
     mindist = 2
 
     # call on lidar function to determine distance from object
-    objectdist = closestdistance #not to be confused with closestdist... this calls on Sean's function
+    objectdist = closestDistance #not to be confused with closestdist... this calls on Sean's function
     if objectdist <= closestdist:
             left_side_speed = 0
             right_side_speed = 0
@@ -174,8 +174,8 @@ def stop_check(closestdistance):
             # call on turning function to rotate 45 degrees ccw
             turningFunction(-45)
             # call on lidar function to determine distance from object
-            if closestdistance < 10:
-                ccw45dist = closestdistance
+            if closestDistance < 10:
+                ccw45dist = closestDistance
             else:
                 ccw45dist = 10
 
@@ -184,8 +184,8 @@ def stop_check(closestdistance):
 
             # call on turning rotate 45 ccw
             turningFunction(-45)
-            if closestdistance < 10:
-                ccw90dist = closestdistance
+            if closestDistance < 10:
+                ccw90dist = closestDistance
             else:
                 ccw90dist = 10
             if  ccw90dist > greatestdist:
@@ -193,8 +193,8 @@ def stop_check(closestdistance):
 
             # call on turning rotate 180 cw
             turningFunction(180)
-            if closestdistance < 10:
-                cw90dist = closestdistance
+            if closestDistance < 10:
+                cw90dist = closestDistance
             else:
                 cw90dist = 10
             if cw90dist > greatestdist:
@@ -202,8 +202,8 @@ def stop_check(closestdistance):
 
             # call on turning rotate 45 ccw
             turningFunction(-45)
-            if closestdistance < 10:
-                cw45dist = closestdistance
+            if closestDistance < 10:
+                cw45dist = closestDistance
             else:
                 cw45dist = 10
             if cw45dist > greatestdist:
