@@ -75,8 +75,8 @@ def turningFunction(angle):
     # if ccw
     else:
         # calculate the new desired vector
-        heading = rover.heading
-        heading = angleConvertion(heading)
+        heading1 = rover.heading
+        heading = angleConvertion(heading1)
         
         desiredHeading = heading + angle
         # turn right wheel forwards and left backwards
