@@ -391,7 +391,7 @@ def main():
             #Call Lucas's function
         
         
-        i = i + 1
+            i = i + 1
         sleep(0.01)
         
         if rover.x == destinationList[0] and rover.y == destinationList[1]:
