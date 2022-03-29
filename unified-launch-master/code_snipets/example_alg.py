@@ -8,7 +8,7 @@ def main():
     i = 0
 
     left_side_speed = 2
-    right_side_speed = -2
+    right_side_speed = 2
 
     while i < 30:
         print("X: " + str(rover.x) + " Y: " + str(rover.y) + " Heading: " + str(rover.heading))
