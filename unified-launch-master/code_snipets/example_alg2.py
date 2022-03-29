@@ -107,7 +107,7 @@ def distanceChecking1(listOfAlertDistance1, listFromLiDAR):
     Calculate the delta distance and will return a list containing the difference
     '''
 
-    listOfDifference = [listFromLiDAR[-1] - listOfAlertDistance1[-1]] 
+    listOfDifference = [] 
     i = 0
     while i < 32:
       listOfDifference.append(listFromLiDAR[i] - listOfAlertDistance1[i])
