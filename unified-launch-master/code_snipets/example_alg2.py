@@ -132,7 +132,7 @@ def distanceChecking2(listOfAlertDistance2, listFromLiDAR, flag):
     listOfDifference = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
     i = 0
     while i < 30:
-        listOfDifference=listFromLiDAR[i] - listOfAlertDistance2[i]
+        listOfDifference[i]=listFromLiDAR[i] - listOfAlertDistance2[i]
         i += 1
   
     if any(n < 0 for n in listOfDifference) == True:
