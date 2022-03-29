@@ -125,10 +125,9 @@ def distanceChecking1(listOfAlertDistance1, listFromLiDAR):
 flag will be defined in main function
 the value will be set to default(0) after every stop and scan
 '''
+'''
 def distanceChecking2(listOfAlertDistance2, listFromLiDAR, flag):
-    '''
-    Calculate the delta distance and will return a list containing the difference
-    '''
+    
     listOfDifference = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
     i = 0
     while i < 30:
@@ -136,20 +135,13 @@ def distanceChecking2(listOfAlertDistance2, listFromLiDAR, flag):
         i += 1
   
     if any(n < 0 for n in listOfDifference) == True:
-        '''means something is in the turning radius'''
+        
         flag = flag + 1
     else:
         flag = 0
-        '''
-        If the flag is 1, indicating something is within the turning radius of the rover.
-            
-        If the flag is over 0, means the rover has moved forward under the condition that there's not enough space for 
-        turning. In this case, the rover may already be stuck.
-    
-    
-        '''
+        
     return flag
-
+'''
 '''
 flag == 1 && true : something is in the path as well as the turning radius ---> stop and scan
 flag == 1 && false: path is clear but the rover may not be able to turn ---> keep moving forward
@@ -405,7 +397,7 @@ def main():
     while i < 3000:
         rover.send_command(left_side_speed, right_side_speed)
         
-        flag = 0
+        #flag = 0
         
         listOfLiDAR = [100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100] 
 
@@ -415,7 +407,7 @@ def main():
             
            
         closestDistance, result = distanceChecking1(listOfDistance1, listOfLiDAR ) 
-        flag = distanceChecking2(listOfDistance2, listOfLiDAR, flag)
+        #flag = distanceChecking2(listOfDistance2, listOfLiDAR, flag)
         if result == True:
             stop_check(closestDistance)
         #elif flag > 1:
