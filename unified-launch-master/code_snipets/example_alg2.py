@@ -353,35 +353,7 @@ def backup2(inputDistance) :
     #call Eden's function
 
     if __name__ == "__stop_check__":
-        stop_check()
-
-
-
-
-
-
-
-
-# Lidar Section. Outputs lift of x and y coordinates as well as how any obstacles are detected.
-def Lidar_Coordinate_Code():
-        X = 1
-        Counter = 0
-        for dist in rover.laser_distances:
-
-            # Find the theta and laser distance using geometry and the laser call function
-            lasertheta =  (pi/2) - ((X - 1)((pi)/32))
-            laserdist = dist
-
-            if laserdist < 100:
-                # Calculate the x and y only if the sensor reads something. Count how many data points there are
-                 ycoord[X] = laserdist*math.sin(lasertheta)
-                 xcoord[X] = laserdist*math.cos(lasertheta)
-                 X = X + 1
-
-        return ycoord, xcoord, X
-
-    
-    
+        stop_check()    
     
 destinationList = [100, 100]
     
