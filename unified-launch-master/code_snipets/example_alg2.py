@@ -71,8 +71,8 @@ def turningFunction(angle):
         
         desiredHeading = heading + angle
         # turn right wheel backwards and left forwards
-        left_side_speed = 1
-        right_side_speed = -1
+        left_side_speed = 5
+        right_side_speed = -5
         rover.send_command(left_side_speed, right_side_speed)
     # if ccw
     else:
@@ -82,8 +82,8 @@ def turningFunction(angle):
         
         desiredHeading = heading + angle
         # turn right wheel forwards and left backwards
-        left_side_speed = -1
-        right_side_speed = 1
+        left_side_speed = -5
+        right_side_speed = 5
         rover.send_command(left_side_speed, right_side_speed)
     # if heading = new desired vector set wheels to 0
     if heading == desiredHeading:
@@ -279,8 +279,8 @@ def backup1() :
     
     rover = Rover()
 
-    i = -1
-    j = -1
+    i = -5
+    j = -5
     left_side_speed = i
     right_side_speed = j
 
@@ -299,8 +299,8 @@ def backup2() :
     
     while 1:
 
-        i = 1
-        j = -1
+        i = 5
+        j = -5
 
         left_side_speed = i
         right_side_speed = j
@@ -310,10 +310,11 @@ def backup2() :
         #rotate 45 ccw, check if initial/final heading vectors equal
 
         if initialHeadingVector == finalHeadingVector :
-            break
+            if __name__ == "__stop_check__":
+                stop_check()
 
-        i = -1
-        j = 1
+        i = -5
+        j = 5
 
         left_side_speed = i
         right_side_speed = j
@@ -322,14 +323,15 @@ def backup2() :
 
         # rotate 45 cw, check if initial/final heading vectors equal
         if initialHeadingVector == finalHeadingVector:
-            break
+            if __name__ == "__stop_check__":
+                stop_check()
 
     while 1 :
 
         sleeptime = 5
 
-        left_side_speed = 1
-        right_side_speed = 1
+        left_side_speed = 5
+        right_side_speed = 5
 
         time.sleep(sleeptime)
 
@@ -391,8 +393,8 @@ def main():
  
     #Step2: Move forward and scanning before bumping into obstacles
    
-    left_side_speed = 1
-    right_side_speed = 1
+    left_side_speed = 5
+    right_side_speed = 5
 
     while i < 3000:
         rover.send_command(left_side_speed, right_side_speed)
