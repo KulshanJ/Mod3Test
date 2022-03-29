@@ -164,6 +164,8 @@ flag == 0 && false: all is clear ---> move forward
 
 
 def stop_check(closestdistance):
+    
+    rover = Rover()
     # variables for sleep time, speed, stopping distance, minimum tolerated distance
     speed = 1
     sleeptime = 2
