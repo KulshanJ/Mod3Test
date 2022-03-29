@@ -136,7 +136,7 @@ def distanceChecking2(listOfAlertDistance2, listFromLiDAR, flag):
     if any(n < 0 for n in listOfDifference) == True:
         '''means something is in the turning radius'''
         flag = flag + 1
-        else:
+    else:
         flag = 0
         '''
         If the flag is 1, indicating something is within the turning radius of the rover.
