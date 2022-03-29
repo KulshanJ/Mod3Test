@@ -17,7 +17,7 @@ def angleFindingByTwoLists(previousPosition, currentPosition):
     m = np.array(previousPosition)
     n = np.array(currentPosition)
     vector = np.subtract(n, m)
-    return angleOfHeadingVector(vector)
+    return angleFindingByVector(vector)
 
 
 def angleFindingByVector(vector):
