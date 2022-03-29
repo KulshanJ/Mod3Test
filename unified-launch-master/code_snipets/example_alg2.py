@@ -47,19 +47,13 @@ def angleFindingByVector(vector):
 
 
 
-
-def pathDecision(currentAngle, desiredAngle):
-    angleToTurn = desiredAngle - currentAngle
-    return angleToTurn
-
-
-
-
 def turningFunction(angle):
     # if cw
     if angle < 0:
         # calculate the new desired vector
         heading = rover.heading
+        
+        
         desiredHeading = heading + angle
         # turn right wheel backwards and left forwards
         left_side_speed = 1
