@@ -62,7 +62,7 @@ def angleConvertion(angle):
 def turningFunction(angle, heading):
     # if cw
     rover = Rover()
-    print("turning function: " + " Heading: " + heading)
+    print("turning function: " + " Heading: " + str(heading))
     if angle < 0:
         # calculate the new desired vector
                 
@@ -173,7 +173,7 @@ def stop_check(closestDistance, heading):
     sleeptime = 2
     closestdist = 0.5
     mindist = 2
-    print("inside stop check: " + " Heading: " + heading)
+    print("inside stop check: " + " Heading: " + str(heading))
 
     # call on lidar function to determine distance from object
     objectdist = closestDistance #not to be confused with closestdist... this calls on Sean's function
