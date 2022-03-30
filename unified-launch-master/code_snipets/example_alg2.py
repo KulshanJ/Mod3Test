@@ -62,7 +62,7 @@ def angleConvertion(angle):
 def turningFunction(angle, heading):
     # if cw
     rover = Rover()
-    print("turning function: " + str(rover.x) + " Y: " + str(rover.y) + " Heading: " + str(rover.heading))
+    print("turning function: " + " Heading: " + heading)
     if angle < 0:
         # calculate the new desired vector
                 
@@ -173,7 +173,7 @@ def stop_check(closestDistance, heading):
     sleeptime = 2
     closestdist = 0.5
     mindist = 2
-    print("inside stop check: " + str(rover.x) + " Y: " + str(rover.y) + " Heading: " + str(rover.heading))
+    print("inside stop check: " + " Heading: " heading)
 
     # call on lidar function to determine distance from object
     objectdist = closestDistance #not to be confused with closestdist... this calls on Sean's function
@@ -411,7 +411,6 @@ def main():
         
         #flag = 0
         heading = rover.heading
-        print("after declare: " + str(rover.x) + " Y: " + str(rover.y) + " Heading: " + str(rover.heading))
         listOfLiDAR = [100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100] 
         k = 0
 
@@ -425,7 +424,6 @@ def main():
         #flag = distanceChecking2(listOfDistance2, listOfLiDAR, flag)
         if result == True:
             stop_check(closestDistance, heading)
-            print("after eden call: " + str(rover.x) + " Y: " + str(rover.y) + " Heading: " + str(rover.heading))
         #elif flag > 1:
             #Call Lucas's function
         
