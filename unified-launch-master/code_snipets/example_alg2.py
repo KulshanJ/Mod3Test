@@ -61,6 +61,7 @@ def angleConvertion(angle):
 #heading
 def turningFunction(angle, ):
     # if cw
+    heading = 0
     rover = Rover()
     if angle < 0:
         # calculate the new desired vector
