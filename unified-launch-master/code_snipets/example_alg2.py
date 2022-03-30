@@ -90,7 +90,7 @@ def turningFunction(angle):
     
     x = desiredHeading - 1
     y = desiredHeading + 1
-    '''      
+     
     if heading < y && x < heading:
         left_side_speed = 0
         right_side_speed = 0
@@ -109,7 +109,7 @@ def turningFunction(angle):
             print(y)
             print(desiredHeading)
             exit()
-
+    '''
         
     
 def pathDecision(currentAngle, desiredAngle):
