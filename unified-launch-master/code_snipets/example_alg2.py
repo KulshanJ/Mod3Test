@@ -65,6 +65,7 @@ def turningFunction(angle):
     if angle < 0:
         # calculate the new desired vector
         heading = rover.heading
+        print(heading)
         #heading = angleConvertion(heading)
         
         desiredHeading = heading + angle
@@ -76,6 +77,7 @@ def turningFunction(angle):
     else:
         # calculate the new desired vector
         heading = rover.heading
+        print(heading)
         #heading = angleConvertion(heading)
         
         desiredHeading = heading + angle
