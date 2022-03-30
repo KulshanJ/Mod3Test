@@ -107,7 +107,7 @@ def turningFunction(angle):
             print(x)
             print(y)
             print(desiredHeading)
-            break
+            exit()
 
         
     
