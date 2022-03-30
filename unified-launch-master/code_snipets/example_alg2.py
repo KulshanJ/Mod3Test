@@ -165,8 +165,8 @@ def stop_check(closestDistance, heading):
     # variables for sleep time, speed, stopping distance, minimum tolerated distance
     speed = 1
     sleeptime = 2
-    closestdist = 1
-    mindist = 2
+    closestdist = 1.75
+    mindist = 2.5
 
     # call on lidar function to determine distance from object
     objectdist = closestDistance #not to be confused with closestdist... this calls on Sean's function
