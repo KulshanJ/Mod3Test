@@ -91,14 +91,12 @@ def turningFunction(angle, heading):
     check = 1
     #heading < y and x < heading
     while check == 1:
-        print(rover.heading)
         realheading = rover.heading
         if realheading < y and x < realheading:
             left_side_speed = 0
             right_side_speed = 0
             rover.send_command(left_side_speed, right_side_speed)
             check = 0
-            exit()
 
         
     
