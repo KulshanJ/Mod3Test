@@ -177,13 +177,11 @@ def stop_check(closestDistance, heading):
 
             # call on turning function to rotate 45 degrees ccw
             turningFunction(-45, heading)
-            print(closestDistance)
             # call on lidar function to determine distance from object
             if closestDistance < 10:
                 ccw45dist = closestDistance
             else:
                 ccw45dist = 10
-            print(closestDistance)
             # set this distance to be the greatest distance
             greatestdist = ccw45dist
 
@@ -195,7 +193,6 @@ def stop_check(closestDistance, heading):
                 ccw90dist = 10
             if  ccw90dist > greatestdist:
                 greatestdist = ccw90dist
-            print(closestDistance)
             # call on turning rotate 180 cw
             turningFunction(180, heading)
             if closestDistance < 10:
