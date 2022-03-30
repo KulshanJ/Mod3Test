@@ -62,7 +62,6 @@ def angleConvertion(angle):
 
 def turningFunction(angle):
     # if cw
-    from math import isclose
     rover = Rover()
     if angle < 0:
         # calculate the new desired vector
