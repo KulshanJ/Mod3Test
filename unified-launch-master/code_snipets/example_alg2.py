@@ -402,12 +402,13 @@ def main():
    
     left_side_speed = 5
     right_side_speed = 5
-
+    print(rover.heading)
     while i < 3000:
         rover.send_command(left_side_speed, right_side_speed)
         
         #flag = 0
         heading = rover.heading
+        print(rover.heading)
         listOfLiDAR = [100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100] 
         k = 0
 
