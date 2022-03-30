@@ -3,7 +3,6 @@ from time import sleep
 
 import math
 import numpy as np
-import numpy.testing
 
 def angleFindingByTwoLists(previousPosition, currentPosition):
     '''
@@ -94,7 +93,7 @@ def turningFunction(angle):
     check = 1
     #assert_approx_equal(heading,desiredHeading,significant=1,err_msg='',verbose=True)
     while check == 1:
-        if assert_approx_equal(heading,desiredHeading,significant=1,err_msg='',verbose=True):
+        if self.assert_approx_equal(heading,desiredHeading,significant=1,err_msg='',verbose=True):
             left_side_speed = 0
             right_side_speed = 0
             rover.send_command(left_side_speed, right_side_speed)
