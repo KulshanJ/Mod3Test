@@ -173,7 +173,7 @@ def stop_check(closestDistance, heading):
     sleeptime = 2
     closestdist = 0.5
     mindist = 2
-    print("inside stop check: " + " Heading: " heading)
+    print("inside stop check: " + " Heading: " + heading)
 
     # call on lidar function to determine distance from object
     objectdist = closestDistance #not to be confused with closestdist... this calls on Sean's function
