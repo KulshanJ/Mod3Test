@@ -67,7 +67,7 @@ def turningFunction(angle, heading):
                 
         #heading = angleConvertion(heading)
         #print(rover.heading)
-        desiredHeading = heading + angle
+        #desiredHeading = heading + angle
         # turn right wheel backwards and left forwards
         left_side_speed = 3
         right_side_speed = -3
@@ -78,26 +78,29 @@ def turningFunction(angle, heading):
         
         #heading = angleConvertion(heading)
         
-        desiredHeading = heading + angle
+        #desiredHeading = heading + angle
         # turn right wheel forwards and left backwards
         left_side_speed = -3
         right_side_speed = 3
         rover.send_command(left_side_speed, right_side_speed)
     # if heading = new desired vector set wheels to 0
-    
+    desiredHeading = heading + angle
     x = desiredHeading - 1
     y = desiredHeading + 1
     
     check = 1
+    time = 0
     #heading < y and x < heading
     while check == 1:
         realheading = rover.heading
+        time =+ 1
         if realheading < y and x < realheading:
             left_side_speed = 0
             right_side_speed = 0
             rover.send_command(left_side_speed, right_side_speed)
             check = 0
-
+        elif time = 300:
+            exit()
         
     
 def pathDecision(currentAngle, desiredAngle):
