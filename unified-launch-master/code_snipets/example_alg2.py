@@ -163,10 +163,10 @@ def stop_check(closestDistance, heading):
     
     rover = Rover()
     # variables for sleep time, speed, stopping distance, minimum tolerated distance
-    speed = 1
-    sleeptime = 2
-    closestdist = 3
-    mindist = 4
+    speed = 3
+    sleeptime = 3
+    closestdist = 2
+    mindist = 3
 
     # call on lidar function to determine distance from object
     objectdist = closestDistance #not to be confused with closestdist... this calls on Sean's function
