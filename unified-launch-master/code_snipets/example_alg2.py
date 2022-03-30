@@ -58,15 +58,13 @@ def angleConvertion(angle):
 
 
 
-
-def turningFunction(angle):
+#heading
+def turningFunction(angle, ):
     # if cw
     rover = Rover()
     if angle < 0:
         # calculate the new desired vector
-        print("X: " + str(rover.x) + " Y: " + str(rover.y) + " Heading: " + str(rover.heading))
-        heading = rover.heading
-        print("X: " + str(rover.x) + " Y: " + str(rover.y) + " Heading: " + str(rover.heading))
+                
         #heading = angleConvertion(heading)
         
         desiredHeading = heading + angle
@@ -77,8 +75,7 @@ def turningFunction(angle):
     # if ccw
     else:
         # calculate the new desired vector
-        heading = rover.heading
-        print("X: " + str(rover.x) + " Y: " + str(rover.y) + " Heading: " + str(rover.heading))
+        
         #heading = angleConvertion(heading)
         
         desiredHeading = heading + angle
@@ -90,7 +87,7 @@ def turningFunction(angle):
     
     x = desiredHeading - 1
     y = desiredHeading + 1
-     
+    print("X: " + str(rover.x) + " Y: " + str(rover.y) + " Heading: " + str(rover.heading))
     if heading < y and x < heading:
         left_side_speed = 0
         right_side_speed = 0
@@ -104,11 +101,7 @@ def turningFunction(angle):
             right_side_speed = 0
             rover.send_command(left_side_speed, right_side_speed)
             check = 0
-            print(heading)
-            print(x)
-            print(y)
-            print(desiredHeading)
-            exit()
+            #exit()
     '''
         
     
@@ -395,12 +388,10 @@ def main():
         listOfDistance2.append(roverRange / math.sin((math.pi/4) + (deltaAngle*(i))))
         i += 1
     
-    print("X: " + str(rover.x) + " Y: " + str(rover.y) + " Heading: " + str(rover.heading))
     #Step1: orient the rover to head towards the destination
     '''Call function to get current position and head vector'''
     currentPosition = [rover.x, rover.y]
     headVector = [math.sin(rover.heading), math.cos(rover.heading)]
-
     print("X: " + str(rover.x) + " Y: " + str(rover.y) + " Heading: " + str(rover.heading))
     '''Find angles and make orientation'''
     angleOfHeadingVector = angleFindingByTwoLists(currentPosition, destinationList)
@@ -439,7 +430,6 @@ def main():
         
             i = i + 1
         sleep(0.01)
-        print("X: " + str(rover.x) + " Y: " + str(rover.y) + " Heading: " + str(rover.heading))
         if rover.x == destinationList[0] and rover.y == destinationList[1]:
             break
 
