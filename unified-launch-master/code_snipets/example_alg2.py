@@ -87,22 +87,21 @@ def turningFunction(angle):
     
     x = desiredHeading - 1
     y = desiredHeading + 1
-    
+    '''      
     if heading < y && x < heading:
         left_side_speed = 0
         right_side_speed = 0
         rover.send_command(left_side_speed, right_side_speed)
     '''
     check = 1
-    #assert_approx_equal(heading,desiredHeading,significant=1,err_msg='',verbose=True)
-    while check == 1:
-        if nearly_equal(heading,desiredHeading,sig_fig=1):
+
+        if heading < y && x < heading:
             left_side_speed = 0
             right_side_speed = 0
             rover.send_command(left_side_speed, right_side_speed)
             check = 0
             print('broke')
-    '''  
+
         
     
 def pathDecision(currentAngle, desiredAngle):
