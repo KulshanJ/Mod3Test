@@ -395,12 +395,13 @@ def main():
         listOfDistance2.append(roverRange / math.sin((math.pi/4) + (deltaAngle*(i))))
         i += 1
     
+    print("X: " + str(rover.x) + " Y: " + str(rover.y) + " Heading: " + str(rover.heading))
     #Step1: orient the rover to head towards the destination
     '''Call function to get current position and head vector'''
     currentPosition = [rover.x, rover.y]
     headVector = [math.sin(rover.heading), math.cos(rover.heading)]
 
-    
+    print("X: " + str(rover.x) + " Y: " + str(rover.y) + " Heading: " + str(rover.heading))
     '''Find angles and make orientation'''
     angleOfHeadingVector = angleFindingByTwoLists(currentPosition, destinationList)
     angleOfRoverHead = angleFindingByVector(headVector)
@@ -434,6 +435,7 @@ def main():
         #elif flag > 1:
             #Call Lucas's function
         
+        print("X: " + str(rover.x) + " Y: " + str(rover.y) + " Heading: " + str(rover.heading))
         
             i = i + 1
         sleep(0.01)
