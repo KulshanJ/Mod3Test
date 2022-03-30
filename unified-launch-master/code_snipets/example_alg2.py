@@ -85,7 +85,10 @@ def turningFunction(angle):
         rover.send_command(left_side_speed, right_side_speed)
     # if heading = new desired vector set wheels to 0
     
-    if heading == desiredHeading:
+    x = desiredHeading - 1
+    y = desiredHeading + 1
+    
+    if heading < y && x < heading:
         left_side_speed = 0
         right_side_speed = 0
         rover.send_command(left_side_speed, right_side_speed)
