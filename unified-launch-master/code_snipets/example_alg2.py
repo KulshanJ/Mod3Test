@@ -91,6 +91,10 @@ def turningFunction(angle, heading):
     check = 1
     #heading < y and x < heading
     while check == 1:
+        print(heading)
+        print(desiredHeading)
+        print(x)
+        print(y)
         if heading < y and x < heading:
             left_side_speed = 0
             right_side_speed = 0
