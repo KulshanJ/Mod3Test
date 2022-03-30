@@ -366,7 +366,7 @@ def main():
     
     rover = Rover()
     
-    
+    print("first: " + str(rover.x) + " Y: " + str(rover.y) + " Heading: " + str(rover.heading))
     
     '''
     Calculating the alert distance for each of the 32 'lines'
@@ -393,10 +393,11 @@ def main():
     '''Call function to get current position and head vector'''
     currentPosition = [rover.x, rover.y]
     headVector = [math.sin(rover.heading), math.cos(rover.heading)]
-    print("X: " + str(rover.x) + " Y: " + str(rover.y) + " Heading: " + str(rover.heading))
+    print("second: " + str(rover.x) + " Y: " + str(rover.y) + " Heading: " + str(rover.heading))
     '''Find angles and make orientation'''
     angleOfHeadingVector = angleFindingByTwoLists(currentPosition, destinationList)
     angleOfRoverHead = angleFindingByVector(headVector)
+    print("secondpart2: " + str(rover.x) + " Y: " + str(rover.y) + " Heading: " + str(rover.heading))
     #turningFunction(pathDecision(angleOfRoverHead, angleOfHeadingVector))
     #fix later
     i = 0
@@ -410,7 +411,7 @@ def main():
         rover.send_command(left_side_speed, right_side_speed)
         
         #flag = 0
-        
+        print("third: " + str(rover.x) + " Y: " + str(rover.y) + " Heading: " + str(rover.heading))
         listOfLiDAR = [100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100] 
         k = 0
 
@@ -433,7 +434,7 @@ def main():
         sleep(0.01)
         if rover.x == destinationList[0] and rover.y == destinationList[1]:
             break
-
+        print("fourth: " + str(rover.x) + " Y: " + str(rover.y) + " Heading: " + str(rover.heading))
 
 if __name__ == "__main__":
     main()
