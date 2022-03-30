@@ -15,7 +15,7 @@ def main():
     for dist in rover.laser_distances:
         listOfLiDAR.append(dist)
 
-    while i < 1000:
+    while i < 10:
         print("X: " + str(rover.x) + " Y: " + str(rover.y) + " Heading: " + str(rover.heading))
         
         #for dist in rover.laser_distances:
