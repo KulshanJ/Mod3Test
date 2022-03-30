@@ -7,8 +7,8 @@ def main():
     
     i = 0
 
-    left_side_speed = 7
-    right_side_speed = 7
+    left_side_speed = -4
+    right_side_speed = 4
     
     listOfLiDAR = []
 
