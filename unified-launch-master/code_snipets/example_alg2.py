@@ -62,7 +62,7 @@ def angleConvertion(angle):
 
 def turningFunction(angle):
     # if cw
-    print(1)
+    from math import isclose
     rover = Rover()
     if angle < 0:
         # calculate the new desired vector
@@ -86,7 +86,7 @@ def turningFunction(angle):
         right_side_speed = 5
         rover.send_command(left_side_speed, right_side_speed)
     # if heading = new desired vector set wheels to 0
-    
+    '''
     if heading == desiredHeading:
         left_side_speed = 0
         right_side_speed = 0
@@ -95,12 +95,13 @@ def turningFunction(angle):
     check = 1
     #isclose(heading, desiredHeading, abs_tol=1e-0)
     while check == 1:
-        if heading == desiredHeading:
+        if isclose(heading, desiredHeading, abs_tol=1e-0):
             left_side_speed = 0
             right_side_speed = 0
             rover.send_command(left_side_speed, right_side_speed)
             check = 0
-      ''' 
+            print('broke')
+      
         
     
 def pathDecision(currentAngle, desiredAngle):
