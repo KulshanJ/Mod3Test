@@ -94,7 +94,8 @@ def turningFunction(angle):
         rover.send_command(left_side_speed, right_side_speed)
     '''
     check = 1
-
+    
+    while check == 1:
         if heading < y && x < heading:
             left_side_speed = 0
             right_side_speed = 0
