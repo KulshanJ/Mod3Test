@@ -101,7 +101,11 @@ def turningFunction(angle):
             right_side_speed = 0
             rover.send_command(left_side_speed, right_side_speed)
             check = 0
-            print('broke')
+            print(heading)
+            print(x)
+            print(y)
+            print(desiredHeading)
+            break
 
         
     
