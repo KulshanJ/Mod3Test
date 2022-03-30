@@ -99,7 +99,7 @@ def turningFunction(angle, heading):
             right_side_speed = 0
             rover.send_command(left_side_speed, right_side_speed)
             check = 0
-        elif time = 300:
+        elif time == 300:
             exit()
         
     
