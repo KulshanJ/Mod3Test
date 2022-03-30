@@ -435,11 +435,11 @@ def main():
         #elif flag > 1:
             #Call Lucas's function
         
-        print("X: " + str(rover.x) + " Y: " + str(rover.y) + " Heading: " + str(rover.heading))
+        
         
             i = i + 1
         sleep(0.01)
-        
+        print("X: " + str(rover.x) + " Y: " + str(rover.y) + " Heading: " + str(rover.heading))
         if rover.x == destinationList[0] and rover.y == destinationList[1]:
             break
 
