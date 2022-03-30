@@ -62,7 +62,6 @@ def angleConvertion(angle):
 def turningFunction(angle, heading):
     # if cw
     rover = Rover()
-    print("turning function: " + " Heading: " + str(heading))
     if angle < 0:
         # calculate the new desired vector
                 
@@ -88,22 +87,17 @@ def turningFunction(angle, heading):
     
     x = desiredHeading - 1
     y = desiredHeading + 1
-    print("X: " + str(rover.x) + " Y: " + str(rover.y) + " Heading: " + str(rover.heading))
-    if heading < y and x < heading:
-        left_side_speed = 0
-        right_side_speed = 0
-        rover.send_command(left_side_speed, right_side_speed)
-    '''
+    
     check = 1
     #heading < y and x < heading
     while check == 1:
-        if check == 1:
+        if heading < y and x < heading:
             left_side_speed = 0
             right_side_speed = 0
             rover.send_command(left_side_speed, right_side_speed)
             check = 0
-            #exit()
-    '''
+            exit()
+
         
     
 def pathDecision(currentAngle, desiredAngle):
@@ -173,7 +167,6 @@ def stop_check(closestDistance, heading):
     sleeptime = 2
     closestdist = 0.5
     mindist = 2
-    print("inside stop check: " + " Heading: " + str(heading))
 
     # call on lidar function to determine distance from object
     objectdist = closestDistance #not to be confused with closestdist... this calls on Sean's function
@@ -427,13 +420,10 @@ def main():
         #elif flag > 1:
             #Call Lucas's function
         
-        
-        
             i = i + 1
         sleep(0.01)
         if rover.x == destinationList[0] and rover.y == destinationList[1]:
             break
-        print("main: " + str(rover.x) + " Y: " + str(rover.y) + " Heading: " + str(rover.heading))
 
 if __name__ == "__main__":
     main()
