@@ -92,9 +92,9 @@ def turningFunction(angle):
         right_side_speed = 0
         rover.send_command(left_side_speed, right_side_speed)
     '''
-    
+    #isclose(heading, desiredHeading, abs_tol=1e-0)
     while True:
-        if math.isclose(heading, desiredHeading, abs_tol=1e-0):
+        if heading == desiredHeading:
             left_side_speed = 0
             right_side_speed = 0
             rover.send_command(left_side_speed, right_side_speed)
