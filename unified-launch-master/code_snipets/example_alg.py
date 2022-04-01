@@ -79,7 +79,7 @@ def turningFunction(angle):
         rover.send_command(left_side_speed, right_side_speed)
     # if heading = new desired vector set wheels to 0
 
-   
+
 
     check = 1
     # heading < y and x < heading
@@ -108,7 +108,7 @@ def distanceChecking1(listFromLiDAR):
     while i < 30:
         listOfDistance1.append(roverWidth / math.sin((math.pi / 4) + (deltaAngle * (i))))
         i += 1
-        
+
     listOfDifference = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     i = 0
     while i < 30:
@@ -130,7 +130,7 @@ def getLiDARDistance():
     for dist in rover.laser_distances:
         if dist < 100:
                 listOfLiDAR[k] = dist
-            
+
         k = k + 1
     return listOfLiDAR
 '''
@@ -180,7 +180,7 @@ def stop_check():
     mindist = 3
 
     # call on lidar function to determine distance from object
-    
+
     left_side_speed = 0
     right_side_speed = 0
     rover.send_command(left_side_speed, right_side_speed)
@@ -190,8 +190,8 @@ def stop_check():
     # call on lidar function to determine distance from object
     listFromLiDAR = getLiDARDistance()
     closestDistance,result = distanceChecking1(listFromLiDAR)
-    
-  
+
+
     if 0<closestDistance < 10:
             ccw45dist = closestDistance
     else:
@@ -203,15 +203,15 @@ def stop_check():
     turningFunction(-45)
     listFromLiDAR = getLiDARDistance()
     closestDistance, result = distanceChecking1(listFromLiDAR)
-    
+
     if 0< closestDistance < 10:
             ccw90dist = closestDistance
     else:
             ccw90dist = 10
-        
+
     if ccw90dist > greatestdist:
             greatestdist = ccw90dist
-    
+
     # call on turning rotate 180 cw
     turningFunction(180)
     listFromLiDAR = getLiDARDistance()
@@ -227,12 +227,12 @@ def stop_check():
     turningFunction(-45)
     listFromLiDAR = getLiDARDistance()
     closestDistance, result = distanceChecking1(listFromLiDAR)
-    
+
     if 0< closestDistance < 10:
             cw45dist = closestDistance
     else:
             cw45dist = 10
-    
+
     if cw45dist > greatestdist:
             greatestdist = cw45dist
 
@@ -242,7 +242,7 @@ def stop_check():
         # if not, but 45 cw is greater than 5 meters, go this way for sleeptime seconds. If neither of these are true,
         # pick the heading with the greatest distance and travel in that direction. If all distances are less than
         # mindist, call on Lucas's function
-    
+
     if ccw45dist > 5:
                 # rotate 45 ccw
                 turningFunction(-45)
@@ -250,7 +250,7 @@ def stop_check():
                 right_side_speed = speed
                 rover.send_command(left_side_speed, right_side_speed)
                 time.sleep(sleeptime)
-                
+
     elif cw45dist > 5:
                 # rotate 45 cw
                 turningFunction(45)
@@ -377,8 +377,8 @@ def main():
     Calculating the alert distance for each of the 32 'lines'
     Set the list as global
     '''
-    
-    
+
+
 
     # Step1: orient the rover to head towards the destination
     '''Call function to get current position and head vector'''
@@ -404,27 +404,20 @@ def main():
         rover.send_command(left_side_speed, right_side_speed)
 
         # flag = 0
-        heading = rover.heading
-        
-        listOfLiDAR = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100,
-                       100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100]
-        k = 0
-        for dist in rover.laser_distances:
-            if dist < 100:
-                listOfLiDAR[k] = dist
-                k = k + 1
+  
+        listOfLiDAR = getLiDARDistance()
 
         closestDistance, result = distanceChecking1(listOfLiDAR)
         # flag = distanceChecking2(listOfDistance2, listOfLiDAR, flag)
         if result == True:
             stop_check()
-            
+
             # elif flag > 1:
             # Call Lucas's function
 
             i = i + 1
         sleep(0.01)
-        
+
         if rover.x == destinationList[0] and rover.y == destinationList[1]:
             break
 
