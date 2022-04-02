@@ -137,7 +137,7 @@ def getLiDARDistance():
 flag will be defined in main function
 the value will be set to default(0) after every stop and scan
 '''
-'''
+
 def distanceChecking2(listOfAlertDistance2, listFromLiDAR, flag):
     deltaAngle = math.pi / (2 * 29)
     
@@ -161,7 +161,7 @@ def distanceChecking2(listOfAlertDistance2, listFromLiDAR, flag):
         flag = 0
 
     return flag
-'''
+
 '''
 flag == 1 && true : something is in the path as well as the turning radius ---> stop and scan
 flag == 1 && false: path is clear but the rover may not be able to turn ---> keep moving forward
@@ -291,80 +291,35 @@ def stop_check():
                 right_side_speed = speed
                 rover.send_command(left_side_speed, right_side_speed)
                 time.sleep(sleeptime)
+    else:
+        backup1()
 
 
 # BACKUP
 
-# reversing
 def backup1():
     rover = Rover()
-
-    i = -5
-    j = -5
-    left_side_speed = i
-    right_side_speed = j
-
-    rover.send_command(left_side_speed, right_side_speed)
-
-    # call Eden's function
-    if __name__ == "__stop_check__":
-        stop_check()
-
-
-
-
-
-# turning
-def backup2():
-    rover = Rover()
+    previousX = rover.x
+    previousY =rover.y
+    left_side_speed = -1
+    right_side_speed = -1
 
     while 1:
-
-        i = 5
-        j = -5
-
-        left_side_speed = i
-        right_side_speed = j
-
         rover.send_command(left_side_speed, right_side_speed)
+        currentX = rover.x
+        currentY = rover.y
+        deltaDistance = (previousX-currentX)**2+(previousY-currentY)**2
+        if deltaDistance >= 4:
+            break
 
-        # rotate 45 ccw, check if initial/final heading vectors equal
 
-        if initialHeadingVector == finalHeadingVector:
-            if __name__ == "__stop_check__":
-                stop_check()
+    stop_check()
 
-        i = -5
-        j = 5
 
-        left_side_speed = i
-        right_side_speed = j
 
-        rover.send_command(left_side_speed, right_side_speed)
 
-        # rotate 45 cw, check if initial/final heading vectors equal
-        if initialHeadingVector == finalHeadingVector:
-            if __name__ == "__stop_check__":
-                stop_check()
 
-    while 1:
-        sleeptime = 5
 
-        left_side_speed = 5
-        right_side_speed = 5
-
-        time.sleep(sleeptime)
-
-        rover.send_command(left_side_speed, right_side_speed)
-
-        # call in Sean's function
-
-    # reorient, use Sean's function
-
-    # call Eden's function
-
-    if __name__ == "__stop_check__":
-        stop_check()
 
 
 destinationList = [100, 100]
@@ -403,17 +358,17 @@ def main():
     while i < 3000:
         rover.send_command(left_side_speed, right_side_speed)
 
-        # flag = 0
-  
+        flag = 0
+
         listOfLiDAR = getLiDARDistance()
 
         closestDistance, result = distanceChecking1(listOfLiDAR)
-        # flag = distanceChecking2(listOfDistance2, listOfLiDAR, flag)
+        flag = distanceChecking2(listOfDistance2, listOfLiDAR, flag)
         if result == True:
             stop_check()
 
-            # elif flag > 1:
-            # Call Lucas's function
+        elif flag > 1:
+            backup1()
 
             i = i + 1
         sleep(0.01)
