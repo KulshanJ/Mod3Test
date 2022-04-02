@@ -345,11 +345,10 @@ def main():
     # Step1: orient the rover to head towards the destination
     '''Call function to get current position and head vector'''
     currentPosition = [rover.x, rover.y]
-    headVector = [math.sin(rover.heading), math.cos(rover.heading)]
-
+   
     '''Find angles and make orientation'''
     angleOfHeadingVector = angleFindingByTwoLists(currentPosition, destinationList)
-    angleOfRoverHead = angleFindingByVector(headVector)
+    angleOfRoverHead = angleConvertion(rover.heading)
     angleToTurn = pathDecision(angleOfRoverHead, angleOfHeadingVector)
 
     turningFunction(angleToTurn)
