@@ -1,15 +1,12 @@
 from qset_lib import Rover
 from time import sleep
-
 import math
 import numpy as np
-
 def angleFindingByTwoLists(previousPosition, currentPosition):
     '''
     Previous ---> tail of the vector
     Current ---> head of the vector
     '''
-
     '''
     Findingh the heading vector
     '''
@@ -17,18 +14,14 @@ def angleFindingByTwoLists(previousPosition, currentPosition):
     n = np.array(currentPosition)
     vector = np.subtract(n, m)
     return angleFindingByVector(vector)
-
-
 def angleFindingByVector(vector):
     reference = np.array([0, 1])
-
     '''
     According to vector dot product rule, calculate the angle between the vector and the reference vector
     '''
     products = np.dot(vector, reference)
     cosX = products / (np.linalg.norm(vector))
     angle = math.acos(cosX)
-
     '''
     We want to track the angle from the +y direction to the vector, 
     but the angle returned is always the smaller one
@@ -36,15 +29,12 @@ def angleFindingByVector(vector):
     '''
     checkingVector = np.array([1, 0])
     check = np.dot(checkingVector, vector)
-
     '''
     Convert the small angle in 2/3 quadrant to the big angle we want
     '''
     if check < 0:
         angle = 2 * math.pi - angle
     return math.degrees(angle)
-
-'''
 def angleConvertion(angle):
     if 0 < angle <= 90 :
         angle = 90-angle
@@ -53,64 +43,42 @@ def angleConvertion(angle):
     elif -180 < angle <= 0:
         angle = 90 - angle
     return angle
-'''
-
-
-
-
-#heading
-def turningFunction(angle, heading):
+def turningFunction(angle):
     # if cw
     rover = Rover()
     if angle < 0:
         # calculate the new desired vector
-                
-        #heading = angleConvertion(heading)
-        #print(rover.heading)
-        #desiredHeading = heading + angle
+        heading = rover.heading
+        heading = angleConvertion(heading)
+        
+        desiredHeading = heading + angle
         # turn right wheel backwards and left forwards
-        left_side_speed = 3
-        right_side_speed = -3
+        left_side_speed = 5
+        right_side_speed = -5
         rover.send_command(left_side_speed, right_side_speed)
     # if ccw
     else:
         # calculate the new desired vector
+        heading = rover.heading
+        heading = angleConvertion(heading)
         
-        #heading = angleConvertion(heading)
-        
-        #desiredHeading = heading + angle
+        desiredHeading = heading + angle
         # turn right wheel forwards and left backwards
-        left_side_speed = -3
-        right_side_speed = 3
+        left_side_speed = -5
+        right_side_speed = 5
         rover.send_command(left_side_speed, right_side_speed)
     # if heading = new desired vector set wheels to 0
-    desiredHeading = heading + angle
-    x = desiredHeading - 10
-    y = desiredHeading + 10
-    
-    check = 1
-    #heading < y and x < heading
-    while check == 1:
-        realheading = rover.heading
-        if realheading < y and x < realheading:
-            left_side_speed = 0
-            right_side_speed = 0
-            rover.send_command(left_side_speed, right_side_speed)
-            check = 0
-
-        
-    
+    if heading == desiredHeading:
+        left_side_speed = 0
+        right_side_speed = 0
+        rover.send_command(left_side_speed, right_side_speed)
 def pathDecision(currentAngle, desiredAngle):
     angleToTurn = desiredAngle - currentAngle
     return angleToTurn
-
-
-
 def distanceChecking1(listOfAlertDistance1, listFromLiDAR):
     '''
     Calculate the delta distance and will return a list containing the difference
     '''
-
     listOfDifference = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
     i = 0
     while i < 30:
@@ -124,7 +92,6 @@ def distanceChecking1(listOfAlertDistance1, listFromLiDAR):
         return true if the obstacle is within its path ---> need further actions
     '''
     return listOfDifference[0], any(n < 0 for n in listOfDifference)
-
 '''
 flag will be defined in main function
 the value will be set to default(0) after every stop and scan
@@ -156,199 +123,167 @@ flag == 0 && false: all is clear ---> move forward
 
 
 
+def stop_check(closestdistance):
+def stop_check(closestDistance):
 
-
-
-def stop_check(closestDistance, heading):
-    
     rover = Rover()
     # variables for sleep time, speed, stopping distance, minimum tolerated distance
-    speed = 3
-    sleeptime = 3
-    closestdist = 4
-    mindist = 1
+    speed = 1
+    sleeptime = 2
+    closestdist = 0.5
+    mindist = 2
 
     # call on lidar function to determine distance from object
+    objectdist = closestdistance #not to be confused with closestdist... this calls on Sean's function
     objectdist = closestDistance #not to be confused with closestdist... this calls on Sean's function
     if objectdist <= closestdist:
             left_side_speed = 0
             right_side_speed = 0
             rover.send_command(left_side_speed, right_side_speed)
-
             # call on turning function to rotate 45 degrees ccw
-            turningFunction(-45, heading)
+            turningFunction(-45)
             # call on lidar function to determine distance from object
+            if closestdistance < 10:
+                ccw45dist = closestdistance
             if closestDistance < 10:
                 ccw45dist = closestDistance
             else:
                 ccw45dist = 10
+
             # set this distance to be the greatest distance
             greatestdist = ccw45dist
 
             # call on turning rotate 45 ccw
-            turningFunction(45, heading)
+            turningFunction(-45)
+            if closestdistance < 10:
+                ccw90dist = closestdistance
             if closestDistance < 10:
-                cw45dist = closestDistance
+                ccw90dist = closestDistance
             else:
-                cw45dist = 10
-            if  cw45dist > greatestdist:
+                ccw90dist = 10
+            if  ccw90dist > greatestdist:
                 greatestdist = ccw90dist
-            '''    
+
             # call on turning rotate 180 cw
-            turningFunction(180, heading)
+            turningFunction(180)
+            if closestdistance < 10:
+                cw90dist = closestdistance
             if closestDistance < 10:
                 cw90dist = closestDistance
             else:
                 cw90dist = 10
             if cw90dist > greatestdist:
                 greatestdist = cw90dist
-            '''
-            # call on turning rotate 45 ccw
-            turningFunction(0, heading)
-            if closestDistance < 10:
-                cw0dist = closestDistance
-            else:
-                cw0dist = 10
-            if cw0dist > greatestdist:
-                greatestdist = cw0dist
 
+            # call on turning rotate 45 ccw
+            turningFunction(-45)
+            if closestdistance < 10:
+                cw45dist = closestdistance
+            if closestDistance < 10:
+                cw45dist = closestDistance
+            else:
+                cw45dist = 10
+            if cw45dist > greatestdist:
+                greatestdist = cw45dist
             # call on turning to rotate 45 ccw and return to original position
-            #turningFunction(-45, heading)
-            
+            turningFunction(-45)
             # now choose which distance to go. If 45 ccw is greater than 5 meters go this way automatically for sleeptime seconds
             # if not, but 45 cw is greater than 5 meters, go this way for sleeptime seconds. If neither of these are true,
             # pick the heading with the greatest distance and travel in that direction. If all distances are less than
             # mindist, call on Lucas's function
-
-            if cw0dist <= mindist and cw45dist <= mindist and ccw45dist <= mindist:
+            if cw45dist <= mindist and cw90dist <= mindist and ccw90dist <= mindist and ccw45dist <= mindist:
                 # call on Lucas's function
                 backup1()
-
             else:
                 if ccw45dist > 5:
                     # rotate 45 ccw
-                    turningFunction(-45, heading)
+                    turningFunction(-45)
                     left_side_speed = speed
                     right_side_speed = speed
                     rover.send_command(left_side_speed, right_side_speed)
                     time.sleep(sleeptime)
                 elif cw45dist > 5:
                     # rotate 45 cw
-                    turningFunction(45, heading)
+                    turningFunction(45)
                     left_side_speed = speed
                     right_side_speed = speed
                     rover.send_command(left_side_speed, right_side_speed)
                     time.sleep(sleeptime)
-
                 # if neither are true, pick heading with greatest distance
                 if greatestdist == cw45dist:
                     # rotate 45 cw
-                    turningFunction(45, heading)
+                    turningFunction(45)
                     left_side_speed = speed
                     right_side_speed = speed
                     rover.send_command(left_side_speed, right_side_speed)
                     time.sleep(sleeptime)
-
                 elif greatestdist == ccw45dist:
                     # rotate 45 ccw
-                    turningFunction(-45, heading)
+                    turningFunction(-45)
                     left_side_speed = speed
                     right_side_speed = speed
                     rover.send_command(left_side_speed, right_side_speed)
                     time.sleep(sleeptime)
-
                 elif greatestdist == cw90dist:
                     # rotate 90 cw
-                    turningFunction(90, heading)
+                    turningFunction(90)
                     left_side_speed = speed
                     right_side_speed = speed
                     rover.send_command(left_side_speed, right_side_speed)
                     time.sleep(sleeptime)
-
                 elif greatestdist == ccw90dist:
                     # rotate 90 ccw
-                    turningFunction(-90, heading)
+                    turningFunction(-90)
                     left_side_speed = speed
                     right_side_speed = speed
                     rover.send_command(left_side_speed, right_side_speed)
                     time.sleep(sleeptime)
-
-
-
-
 #BACKUP
-
 #reversing
 def backup1() :
     
     rover = Rover()
-
     i = -5
     j = -5
     left_side_speed = i
     right_side_speed = j
-
     rover.send_command(left_side_speed, right_side_speed)
-
     #call Eden's function
     if __name__ == "__stop_check__":
         stop_check()
-
 initialHeadingVector = 0
-
 #turning
 def backup2() :
-
     rover = Rover()
     
     while 1:
-
         i = 5
         j = -5
-
         left_side_speed = i
         right_side_speed = j
-
         rover.send_command(left_side_speed, right_side_speed)
-
         #rotate 45 ccw, check if initial/final heading vectors equal
-
         if initialHeadingVector == finalHeadingVector :
             if __name__ == "__stop_check__":
                 stop_check()
-
         i = -5
         j = 5
-
         left_side_speed = i
         right_side_speed = j
-
         rover.send_command(left_side_speed, right_side_speed)
-
         # rotate 45 cw, check if initial/final heading vectors equal
         if initialHeadingVector == finalHeadingVector:
             if __name__ == "__stop_check__":
                 stop_check()
-
     while 1 :
-
         sleeptime = 5
-
         left_side_speed = 5
         right_side_speed = 5
-
         time.sleep(sleeptime)
-
         rover.send_command(left_side_speed, right_side_speed)
-
         #call in Sean's function
-
-
     #reorient, use Sean's function
-
-
     #call Eden's function
-
     if __name__ == "__stop_check__":
         stop_check()    
     
@@ -356,74 +291,69 @@ destinationList = [100, 100]
     
     
 def main():
-       
-        rover = Rover()
-
-        '''
-        Calculating the alert distance for each of the 32 'lines'
-        Set the list as global
-        '''
-        roverWidth = 0.61
-        listOfDistance1 = []
-        i = 0
-        deltaAngle = math.pi/(2*29)
-        while i < 30:
-          listOfDistance1.append(roverWidth / math.sin((math.pi/4) + (deltaAngle*(i))))
-          i += 1
-
-
-
-        roverRange = math.sqrt(0.61**2 + 0.61 ** 2)
-        listOfDistance2 = []
-        i = 0
-        while i < 30:
-            listOfDistance2.append(roverRange / math.sin((math.pi/4) + (deltaAngle*(i))))
-            i += 1
-
-        #Step1: orient the rover to head towards the destination
-        '''Call function to get current position and head vector'''
-        currentPosition = [rover.x, rover.y]
-        headVector = [math.sin(rover.heading), math.cos(rover.heading)]
-
-        '''Find angles and make orientation'''
-        angleOfHeadingVector = angleFindingByTwoLists(currentPosition, destinationList)
-        angleOfRoverHead = angleFindingByVector(headVector)
-
-        #turningFunction(pathDecision(angleOfRoverHead, angleOfHeadingVector))
-        #fix later
-        #none of this works because heading isnt called
-        i = 0
-
-        #Step2: Move forward and scanning before bumping into obstacles
-
-        left_side_speed = 5
-        right_side_speed = 5
-
-        while i < 3000:
-                rover.send_command(left_side_speed, right_side_speed)
-
-                #flag = 0
-                heading = rover.heading
-                listOfLiDAR = [100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100] 
-                k = 0
-
-                for dist in rover.laser_distances:
-                    if dist<100:
-                        listOfLiDAR[k] = dist
-                        k=k+1
-
-
-                closestDistance, result = distanceChecking1(listOfDistance1, listOfLiDAR ) 
-                #flag = distanceChecking2(listOfDistance2, listOfLiDAR, flag)
-                if result == True:
-                    stop_check(closestDistance, heading)
-                #elif flag > 1:
-                    #Call Lucas's function
-
-                    i = i + 1
-                sleep(0.01)
-                if rover.x == destinationList[0] and rover.y == destinationList[1]:
-                    break
-
+    
+    rover = Rover()
+    
+    
+    
+    '''
+    Calculating the alert distance for each of the 32 'lines'
+    Set the list as global
+    '''
+    roverWidth = 0.61
+    listOfDistance1 = []
+    i = 0
+    deltaAngle = math.pi/(2*29)
+    while i < 30:
+      listOfDistance1.append(roverWidth / math.sin((math.pi/4) + (deltaAngle*(i))))
+      i += 1
+    roverRange = math.sqrt(0.61**2 + 0.61 ** 2)
+    listOfDistance2 = []
+    i = 0
+    while i < 30:
+        listOfDistance2.append(roverRange / math.sin((math.pi/4) + (deltaAngle*(i))))
+        i += 1
+    
+    #Step1: orient the rover to head towards the destination
+    '''Call function to get current position and head vector'''
+    currentPosition = [rover.x, rover.y]
+    headVector = [math.sin(rover.heading), math.cos(rover.heading)]
+    
+    '''Find angles and make orientation'''
+    angleOfHeadingVector = angleFindingByTwoLists(currentPosition, destinationList)
+    angleOfRoverHead = angleFindingByVector(headVector)
+    turningFunction(pathDecision(angleOfRoverHead, angleOfHeadingVector))
+    i = 0
+ 
+    #Step2: Move forward and scanning before bumping into obstacles
+   
+    left_side_speed = 5
+    right_side_speed = 5
+    while i < 3000:
+        rover.send_command(left_side_speed, right_side_speed)
+        
+        #flag = 0
+        
+        listOfLiDAR = [100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100] 
+        k = 0
+        for dist in rover.laser_distances:
+            if dist<100:
+                listOfLiDAR[k] = dist
+                k=k+1
+            
+           
+        closestDistance, result = distanceChecking1(listOfDistance1, listOfLiDAR ) 
+        #flag = distanceChecking2(listOfDistance2, listOfLiDAR, flag)
+        if result == True:
+            stop_check(closestDistance)
+        #elif flag > 1:
+            #Call Lucas's function
+        
+        
+            i = i + 1
+        sleep(0.01)
+        
+        if rover.x == destinationList[0] and rover.y == destinationList[1]:
+            break
 if __name__ == "__main__":
     main()
