@@ -166,8 +166,8 @@ def stop_check(closestDistance, heading):
     # variables for sleep time, speed, stopping distance, minimum tolerated distance
     speed = 3
     sleeptime = 3
-    closestdist = 2
-    mindist = 3
+    closestdist = 4
+    mindist = 1
 
     # call on lidar function to determine distance from object
     objectdist = closestDistance #not to be confused with closestdist... this calls on Sean's function
@@ -187,7 +187,7 @@ def stop_check(closestDistance, heading):
             greatestdist = ccw45dist
 
             # call on turning rotate 45 ccw
-            turningFunction(90, heading)
+            turningFunction(45, heading)
             if closestDistance < 10:
                 cw45dist = closestDistance
             else:
@@ -205,13 +205,13 @@ def stop_check(closestDistance, heading):
                 greatestdist = cw90dist
             '''
             # call on turning rotate 45 ccw
-            turningFunction(-45, heading)
+            turningFunction(0, heading)
             if closestDistance < 10:
-                cw45dist = closestDistance
+                cw0dist = closestDistance
             else:
-                cw45dist = 10
-            if cw45dist > greatestdist:
-                greatestdist = cw45dist
+                cw0dist = 10
+            if cw0dist > greatestdist:
+                greatestdist = cw0dist
 
             # call on turning to rotate 45 ccw and return to original position
             #turningFunction(-45, heading)
@@ -221,7 +221,7 @@ def stop_check(closestDistance, heading):
             # pick the heading with the greatest distance and travel in that direction. If all distances are less than
             # mindist, call on Lucas's function
 
-            if cw45dist <= mindist and cw90dist <= mindist and ccw90dist <= mindist and ccw45dist <= mindist:
+            if cw0dist <= mindist and cw45dist <= mindist and ccw45dist <= mindist:
                 # call on Lucas's function
                 backup1()
 
@@ -402,30 +402,31 @@ def main():
         right_side_speed = 5
 
         while i < 3000:
-            rover.send_command(left_side_speed, right_side_speed)
+            while not rospy.is_shutdown():
+                rover.send_command(left_side_speed, right_side_speed)
 
-            #flag = 0
-            heading = rover.heading
-            listOfLiDAR = [100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100] 
-            k = 0
+                #flag = 0
+                heading = rover.heading
+                listOfLiDAR = [100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100] 
+                k = 0
 
-            for dist in rover.laser_distances:
-                if dist<100:
-                    listOfLiDAR[k] = dist
-                    k=k+1
+                for dist in rover.laser_distances:
+                    if dist<100:
+                        listOfLiDAR[k] = dist
+                        k=k+1
 
 
-            closestDistance, result = distanceChecking1(listOfDistance1, listOfLiDAR ) 
-            #flag = distanceChecking2(listOfDistance2, listOfLiDAR, flag)
-            if result == True:
-                stop_check(closestDistance, heading)
-            #elif flag > 1:
-                #Call Lucas's function
+                closestDistance, result = distanceChecking1(listOfDistance1, listOfLiDAR ) 
+                #flag = distanceChecking2(listOfDistance2, listOfLiDAR, flag)
+                if result == True:
+                    stop_check(closestDistance, heading)
+                #elif flag > 1:
+                    #Call Lucas's function
 
-                i = i + 1
-            sleep(0.01)
-            if rover.x == destinationList[0] and rover.y == destinationList[1]:
-                break
+                    i = i + 1
+                sleep(0.01)
+                if rover.x == destinationList[0] and rover.y == destinationList[1]:
+                    break
 
 if __name__ == "__main__":
     main()
