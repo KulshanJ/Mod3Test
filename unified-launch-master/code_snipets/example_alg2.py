@@ -354,74 +354,75 @@ destinationList = [100, 100]
     
     
 def main():
-    
-    rover = Rover()
-    
-    '''
-    Calculating the alert distance for each of the 32 'lines'
-    Set the list as global
-    '''
-    roverWidth = 0.61
-    listOfDistance1 = []
-    i = 0
-    deltaAngle = math.pi/(2*29)
-    while i < 30:
-      listOfDistance1.append(roverWidth / math.sin((math.pi/4) + (deltaAngle*(i))))
-      i += 1
-
-
-
-    roverRange = math.sqrt(0.61**2 + 0.61 ** 2)
-    listOfDistance2 = []
-    i = 0
-    while i < 30:
-        listOfDistance2.append(roverRange / math.sin((math.pi/4) + (deltaAngle*(i))))
-        i += 1
-    
-    #Step1: orient the rover to head towards the destination
-    '''Call function to get current position and head vector'''
-    currentPosition = [rover.x, rover.y]
-    headVector = [math.sin(rover.heading), math.cos(rover.heading)]
-
-    '''Find angles and make orientation'''
-    angleOfHeadingVector = angleFindingByTwoLists(currentPosition, destinationList)
-    angleOfRoverHead = angleFindingByVector(headVector)
-    
-    #turningFunction(pathDecision(angleOfRoverHead, angleOfHeadingVector))
-    #fix later
-    #none of this works because heading isnt called
-    i = 0
- 
-    #Step2: Move forward and scanning before bumping into obstacles
-   
-    left_side_speed = 5
-    right_side_speed = 5
-    
-    while i < 3000:
-        rover.send_command(left_side_speed, right_side_speed)
+    while not rospy.is_shutdown():
         
-        #flag = 0
-        heading = rover.heading
-        listOfLiDAR = [100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100] 
-        k = 0
+        rover = Rover()
 
-        for dist in rover.laser_distances:
-            if dist<100:
-                listOfLiDAR[k] = dist
-                k=k+1
-            
-           
-        closestDistance, result = distanceChecking1(listOfDistance1, listOfLiDAR ) 
-        #flag = distanceChecking2(listOfDistance2, listOfLiDAR, flag)
-        if result == True:
-            stop_check(closestDistance, heading)
-        #elif flag > 1:
-            #Call Lucas's function
-        
-            i = i + 1
-        sleep(0.01)
-        if rover.x == destinationList[0] and rover.y == destinationList[1]:
-            break
+        '''
+        Calculating the alert distance for each of the 32 'lines'
+        Set the list as global
+        '''
+        roverWidth = 0.61
+        listOfDistance1 = []
+        i = 0
+        deltaAngle = math.pi/(2*29)
+        while i < 30:
+          listOfDistance1.append(roverWidth / math.sin((math.pi/4) + (deltaAngle*(i))))
+          i += 1
+
+
+
+        roverRange = math.sqrt(0.61**2 + 0.61 ** 2)
+        listOfDistance2 = []
+        i = 0
+        while i < 30:
+            listOfDistance2.append(roverRange / math.sin((math.pi/4) + (deltaAngle*(i))))
+            i += 1
+
+        #Step1: orient the rover to head towards the destination
+        '''Call function to get current position and head vector'''
+        currentPosition = [rover.x, rover.y]
+        headVector = [math.sin(rover.heading), math.cos(rover.heading)]
+
+        '''Find angles and make orientation'''
+        angleOfHeadingVector = angleFindingByTwoLists(currentPosition, destinationList)
+        angleOfRoverHead = angleFindingByVector(headVector)
+
+        #turningFunction(pathDecision(angleOfRoverHead, angleOfHeadingVector))
+        #fix later
+        #none of this works because heading isnt called
+        i = 0
+
+        #Step2: Move forward and scanning before bumping into obstacles
+
+        left_side_speed = 5
+        right_side_speed = 5
+
+        while i < 3000:
+            rover.send_command(left_side_speed, right_side_speed)
+
+            #flag = 0
+            heading = rover.heading
+            listOfLiDAR = [100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100] 
+            k = 0
+
+            for dist in rover.laser_distances:
+                if dist<100:
+                    listOfLiDAR[k] = dist
+                    k=k+1
+
+
+            closestDistance, result = distanceChecking1(listOfDistance1, listOfLiDAR ) 
+            #flag = distanceChecking2(listOfDistance2, listOfLiDAR, flag)
+            if result == True:
+                stop_check(closestDistance, heading)
+            #elif flag > 1:
+                #Call Lucas's function
+
+                i = i + 1
+            sleep(0.01)
+            if rover.x == destinationList[0] and rover.y == destinationList[1]:
+                break
 
 if __name__ == "__main__":
     main()
