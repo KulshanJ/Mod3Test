@@ -1,6 +1,5 @@
 from qset_lib import Rover
 from time import sleep
-import rospy
 
 import math
 import numpy as np
@@ -357,8 +356,7 @@ destinationList = [100, 100]
     
     
 def main():
-    while not rospy.is_shutdown():
-        
+       
         rover = Rover()
 
         '''
@@ -402,7 +400,6 @@ def main():
         right_side_speed = 5
 
         while i < 3000:
-            while not rospy.is_shutdown():
                 rover.send_command(left_side_speed, right_side_speed)
 
                 #flag = 0
