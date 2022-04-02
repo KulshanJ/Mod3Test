@@ -187,13 +187,14 @@ def stop_check(closestDistance, heading):
             greatestdist = ccw45dist
 
             # call on turning rotate 45 ccw
-            turningFunction(-45, heading)
+            turningFunction(90, heading)
             if closestDistance < 10:
-                ccw90dist = closestDistance
+                cw45dist = closestDistance
             else:
-                ccw90dist = 10
-            if  ccw90dist > greatestdist:
+                cw45dist = 10
+            if  cw45dist > greatestdist:
                 greatestdist = ccw90dist
+            '''    
             # call on turning rotate 180 cw
             turningFunction(180, heading)
             if closestDistance < 10:
@@ -202,7 +203,7 @@ def stop_check(closestDistance, heading):
                 cw90dist = 10
             if cw90dist > greatestdist:
                 greatestdist = cw90dist
-
+            '''
             # call on turning rotate 45 ccw
             turningFunction(-45, heading)
             if closestDistance < 10:
@@ -213,7 +214,8 @@ def stop_check(closestDistance, heading):
                 greatestdist = cw45dist
 
             # call on turning to rotate 45 ccw and return to original position
-            turningFunction(-45, heading)
+            #turningFunction(-45, heading)
+            
             # now choose which distance to go. If 45 ccw is greater than 5 meters go this way automatically for sleeptime seconds
             # if not, but 45 cw is greater than 5 meters, go this way for sleeptime seconds. If neither of these are true,
             # pick the heading with the greatest distance and travel in that direction. If all distances are less than
