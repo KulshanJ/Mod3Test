@@ -1,5 +1,6 @@
 from qset_lib import Rover
 from time import sleep
+import rospy
 
 import math
 import numpy as np
