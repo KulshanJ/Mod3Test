@@ -4,7 +4,6 @@ from time import sleep
 import math
 import numpy as np
 
-
 def angleFinding(previousPosition, currentPosition):
     reference = np.array([0, 1])
     m = np.array(previousPosition)
@@ -108,12 +107,17 @@ def distanceChecking1(listFromLiDAR):
         Return false if the path is clear ---> keep moving straightforward
         return true if the obstacle is within its path ---> need further actions
     '''
-    return listOfDifference[0]*(-1), any(n < 0 for n in listOfDifference)
+    result = false
+    if(listFromLiDAR[0] < 0):
+        result = true
+    closestDistance = listOfDifference[0]*(-1)
+    return closestDistance, result
+
 
 def getLiDARDistance():
     rover = Rover()
-    listOfLiDAR = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100,
-                       100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100]
+    listOfLiDAR = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100,
+                   100, 100, 100, 100, 100, 100, 100, 100, 100, 100]
     k = 0
     for dist in rover.laser_distances:
         if dist < 100:
@@ -121,6 +125,8 @@ def getLiDARDistance():
 
         k = k + 1
     return listOfLiDAR
+
+
 '''
 flag will be defined in main function
 the value will be set to default(0) after every stop and scan
@@ -321,9 +327,9 @@ def main():
 
     '''Find angles and make orientation'''
     angleOfHeadingVector = angleFinding(currentPosition, destinationList)
-    angleOfRoverHead = angleConvertion(rover.heading)
+    heading = rover.heading
+    angleOfRoverHead = angleConvertion(heading)
     angleToTurn = pathDecision(angleOfRoverHead, angleOfHeadingVector)
-
     turningFunction(angleToTurn)
     # fix later
     # none of this works because heading isnt called
@@ -340,8 +346,9 @@ def main():
         flag = 0
 
         listOfLiDAR = getLiDARDistance()
-
         closestDistance, result = distanceChecking1(listOfLiDAR)
+
+
         flag = distanceChecking2(listOfDistance2, listOfLiDAR, flag)
         if result == True:
             stop_check()
