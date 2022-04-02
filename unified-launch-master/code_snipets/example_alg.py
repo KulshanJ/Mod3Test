@@ -310,6 +310,9 @@ def backup1():
         currentY = rover.y
         deltaDistance = (previousX-currentX)**2+(previousY-currentY)**2
         if deltaDistance >= 4:
+            left_side_speed = 0
+            right_side_speed = 0
+            rover.send_command(left_side_speed, right_side_speed)
             break
 
 
