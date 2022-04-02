@@ -5,23 +5,11 @@ import math
 import numpy as np
 
 
-def angleFindingByTwoLists(previousPosition, currentPosition):
-    '''
-    Previous ---> tail of the vector
-    Current ---> head of the vector
-    '''
-
-    '''
-    Findingh the heading vector
-    '''
+def angleFinding(previousPosition, currentPosition):
+    reference = np.array([0, 1])
     m = np.array(previousPosition)
     n = np.array(currentPosition)
     vector = np.subtract(n, m)
-    return angleFindingByVector(vector)
-
-
-def angleFindingByVector(vector):
-    reference = np.array([0, 1])
 
     '''
     According to vector dot product rule, calculate the angle between the vector and the reference vector
@@ -67,15 +55,15 @@ def turningFunction(angle):
     if angle < 0:
 
         #turn right wheel backwards and left forwards
-        left_side_speed = -3
-        right_side_speed = 3
+        left_side_speed = -1
+        right_side_speed = 1
         rover.send_command(left_side_speed, right_side_speed)
     # if cw
     else:
 
         # turn right wheel forwards and left backwards
-        left_side_speed = 3
-        right_side_speed = -3
+        left_side_speed = 1
+        right_side_speed = -1
         rover.send_command(left_side_speed, right_side_speed)
     # if heading = new desired vector set wheels to 0
 
@@ -155,7 +143,6 @@ def distanceChecking2(listOfAlertDistance2, listFromLiDAR, flag):
         i += 1
 
     if any(n < 0 for n in listOfDifference) == True:
-
         flag = flag + 1
     else:
         flag = 0
@@ -179,11 +166,11 @@ def stop_check():
     closestdist = 2
     mindist = 3
 
-    # call on lidar function to determine distance from object
-
+    # Stop the rover first
     left_side_speed = 0
     right_side_speed = 0
     rover.send_command(left_side_speed, right_side_speed)
+    closesDist = [0,0,0,0]
 
     # call on turning function to rotate 45 degrees ccw
     turningFunction(-45)
@@ -192,7 +179,7 @@ def stop_check():
     closestDistance,result = distanceChecking1(listFromLiDAR)
 
 
-    if 0<closestDistance < 10:
+    if 0 < closestDistance < 10:
             ccw45dist = closestDistance
     else:
             ccw45dist = 10
@@ -293,6 +280,7 @@ def stop_check():
                 time.sleep(sleeptime)
     else:
         backup1()
+
     left_side_speed = 0
     right_side_speed = 0
     rover.send_command(left_side_speed, right_side_speed)
@@ -320,34 +308,19 @@ def backup1():
             break
 
 
-    stop_check()
 
-
-
-
-
-
-
-
-destinationList = [100, 100]
 
 
 def main():
+    destinationList = [100, 100]
     rover = Rover()
-
-    '''
-    Calculating the alert distance for each of the 32 'lines'
-    Set the list as global
-    '''
-
-
 
     # Step1: orient the rover to head towards the destination
     '''Call function to get current position and head vector'''
     currentPosition = [rover.x, rover.y]
-   
+
     '''Find angles and make orientation'''
-    angleOfHeadingVector = angleFindingByTwoLists(currentPosition, destinationList)
+    angleOfHeadingVector = angleFinding(currentPosition, destinationList)
     angleOfRoverHead = angleConvertion(rover.heading)
     angleToTurn = pathDecision(angleOfRoverHead, angleOfHeadingVector)
 
@@ -364,7 +337,7 @@ def main():
     while i < 3000:
         rover.send_command(left_side_speed, right_side_speed)
 
-        #flag = 0
+        flag = 0
 
         listOfLiDAR = getLiDARDistance()
 
@@ -373,7 +346,7 @@ def main():
         if result == True:
             stop_check()
 
-        #elif flag > 1:
+        elif flag > 1:
             backup1()
 
             i = i + 1
