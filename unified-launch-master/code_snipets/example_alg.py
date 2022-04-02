@@ -364,7 +364,7 @@ def main():
     while i < 3000:
         rover.send_command(left_side_speed, right_side_speed)
 
-        flag = 0
+        #flag = 0
 
         listOfLiDAR = getLiDARDistance()
 
@@ -373,7 +373,7 @@ def main():
         if result == True:
             stop_check()
 
-        elif flag > 1:
+        #elif flag > 1:
             backup1()
 
             i = i + 1
