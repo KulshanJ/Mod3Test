@@ -35,7 +35,7 @@ def angleFinding(previousPosition, currentPosition):
 
 
 def angleConvertion(angle):
-    if 0 < angle <= 90 :
+    if 0 < angle <= 90:
         angle = 90-angle
     elif 90 < angle <= 180:
         angle = 360 - (angle - 90)
@@ -52,21 +52,17 @@ def turningFunction(angle):
     heading = angleConvertion(rover.heading)
     desiredHeading = heading + angle
     if angle < 0:
-
         #turn right wheel backwards and left forwards
         left_side_speed = -1
         right_side_speed = 1
         rover.send_command(left_side_speed, right_side_speed)
     # if cw
     else:
-
         # turn right wheel forwards and left backwards
         left_side_speed = 1
         right_side_speed = -1
         rover.send_command(left_side_speed, right_side_speed)
     # if heading = new desired vector set wheels to 0
-
-
 
     check = 1
     # heading < y and x < heading
@@ -166,126 +162,56 @@ flag == 0 && false: all is clear ---> move forward
 
 def stop_check():
     rover = Rover()
+
     # variables for sleep time, speed, stopping distance, minimum tolerated distance
     speed = 3
     sleeptime = 3
-    closestdist = 2
-    mindist = 3
 
     # Stop the rover first
     left_side_speed = 0
     right_side_speed = 0
     rover.send_command(left_side_speed, right_side_speed)
-    closesDist = [0,0,0,0]
+    closestDist = [0,0,0,0]
 
-    # call on turning function to rotate 45 degrees ccw
-    turningFunction(-45)
-    # call on lidar function to determine distance from object
+    # call on turning function to rotate 90 degrees ccw
+    turningFunction(-90)
     listFromLiDAR = getLiDARDistance()
-    closestDistance,result = distanceChecking1(listFromLiDAR)
+    closestDistance0,result = distanceChecking1(listFromLiDAR)
+    closestDist[0] = closestDistance0
 
 
-    if 0 < closestDistance < 10:
-            ccw45dist = closestDistance
-    else:
-            ccw45dist = 10
-    # set this distance to be the greatest distance
-    greatestdist = ccw45dist
 
-    # call on turning rotate 45 ccw
-    turningFunction(-45)
+    # call on turning rotate 45 cw
+    turningFunction(45)
     listFromLiDAR = getLiDARDistance()
-    closestDistance, result = distanceChecking1(listFromLiDAR)
+    closestDistance1, result = distanceChecking1(listFromLiDAR)
+    closestDist[1] = closestDistance1
 
-    if 0< closestDistance < 10:
-            ccw90dist = closestDistance
-    else:
-            ccw90dist = 10
 
-    if ccw90dist > greatestdist:
-            greatestdist = ccw90dist
-
-    # call on turning rotate 180 cw
-    turningFunction(180)
+    # call on turning rotate 90 cw
+    turningFunction(90)
     listFromLiDAR = getLiDARDistance()
-    closestDistance, result = distanceChecking1(listFromLiDAR)
-    if 0< closestDistance < 10:
-            cw90dist = closestDistance
-    else:
-            cw90dist = 10
-    if cw90dist > greatestdist:
-            greatestdist = cw90dist
+    closestDistance2, result = distanceChecking1(listFromLiDAR)
+    closestDist[2] = closestDistance2
 
-    # call on turning rotate 45 ccw
-    turningFunction(-45)
+    # call on turning rotate 45 cw
+    turningFunction(45)
     listFromLiDAR = getLiDARDistance()
-    closestDistance, result = distanceChecking1(listFromLiDAR)
+    closestDistance3, result = distanceChecking1(listFromLiDAR)
+    closestDist[3] = closestDistance3
 
-    if 0< closestDistance < 10:
-            cw45dist = closestDistance
-    else:
-            cw45dist = 10
+    # call on turning to rotate 90 ccw and return to original position
+    turningFunction(-90)
+    biggestIndex =closestDist.index(max(closestDist))
 
-    if cw45dist > greatestdist:
-            greatestdist = cw45dist
-
-        # call on turning to rotate 45 ccw and return to original position
-    turningFunction(-45)
-       # now choose which distance to go. If 45 ccw is greater than 5 meters go this way automatically for sleeptime seconds
-        # if not, but 45 cw is greater than 5 meters, go this way for sleeptime seconds. If neither of these are true,
-        # pick the heading with the greatest distance and travel in that direction. If all distances are less than
-        # mindist, call on Lucas's function
-
-    if ccw45dist > 5:
-                # rotate 45 ccw
-                turningFunction(-45)
-                left_side_speed = speed
-                right_side_speed = speed
-                rover.send_command(left_side_speed, right_side_speed)
-                time.sleep(sleeptime)
-
-    elif cw45dist > 5:
-                # rotate 45 cw
-                turningFunction(45)
-                left_side_speed = speed
-                right_side_speed = speed
-                rover.send_command(left_side_speed, right_side_speed)
-                time.sleep(sleeptime)
-
-            # if neither are true, pick heading with greatest distance
-    elif greatestdist == cw45dist:
-                # rotate 45 cw
-                turningFunction(45)
-                left_side_speed = speed
-                right_side_speed = speed
-                rover.send_command(left_side_speed, right_side_speed)
-                time.sleep(sleeptime)
-
-    elif greatestdist == ccw45dist:
-                # rotate 45 ccw
-                turningFunction(-45)
-                left_side_speed = speed
-                right_side_speed = speed
-                rover.send_command(left_side_speed, right_side_speed)
-                time.sleep(sleeptime)
-
-    elif greatestdist == cw90dist:
-                # rotate 90 cw
-                turningFunction(90)
-                left_side_speed = speed
-                right_side_speed = speed
-                rover.send_command(left_side_speed, right_side_speed)
-                time.sleep(sleeptime)
-
-    elif greatestdist == ccw90dist:
-                # rotate 90 ccw
-                turningFunction(-90, heading)
-                left_side_speed = speed
-                right_side_speed = speed
-                rover.send_command(left_side_speed, right_side_speed)
-                time.sleep(sleeptime)
-    else:
+    if closestDist[biggestIndex] <= 3:
         backup1()
+    else:
+        turningFunction(-90+45*biggestIndex)
+        left_side_speed = speed
+        right_side_speed = speed
+        rover.send_command(left_side_speed, right_side_speed)
+        time.sleep(sleeptime)
 
     left_side_speed = 0
     right_side_speed = 0
@@ -347,8 +273,6 @@ def main():
 
         listOfLiDAR = getLiDARDistance()
         closestDistance, result = distanceChecking1(listOfLiDAR)
-
-
         flag = distanceChecking2(listOfDistance2, listOfLiDAR, flag)
         if result == True:
             stop_check()
