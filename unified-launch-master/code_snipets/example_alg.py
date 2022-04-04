@@ -103,7 +103,7 @@ def distanceChecking1(listFromLiDAR):
     result = False
     if(listOfDifference[0] < 0):
         result = True
-    closestDistance = listOfDifference[0]*(-1)
+    closestDistance = listOfDifference[0]
     return closestDistance, result
 
 
@@ -200,15 +200,15 @@ def stop_check():
 
     # call on turning to rotate 90 ccw and return to original position
     turningFunction(-90)
-    biggestIndex =closestDist.index(max(closestDist))
+    biggestIndex =closestDist.index(min(closestDist))
 
-    if closestDist[biggestIndex] <= 3:
-        backup1()
+    #if closestDist[biggestIndex] <= 3:
+    #    backup1()
+    #else:
+    if biggestIndex <= 1:
+         turningFunction(-90+45*biggestIndex)
     else:
-        if biggestIndex <= 1:
-            turningFunction(-90+45*biggestIndex)
-        else:
-            turningFunction(-45+45*biggestIndex)
+        turningFunction(-45+45*biggestIndex)
 
         left_side_speed = speed
         right_side_speed = speed
@@ -275,7 +275,7 @@ def main():
 
         listOfLiDAR = getLiDARDistance()
         closestDistance, result = distanceChecking1(listOfLiDAR)
-        flag = distanceChecking2(listOfLiDAR, flag)
+        #flag = distanceChecking2(listOfLiDAR, flag)
         if result == True:
             left_side_speed = 0
             right_side_speed = 0
