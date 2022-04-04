@@ -274,9 +274,10 @@ def main():
         rover.send_command(left_side_speed, right_side_speed)
 
         flag = 0
+        sleep(10)
 
         listOfLiDAR = getLiDARDistance()
-        sleep(10)
+        
         left_side_speed = 0
         right_side_speed = 0
         rover.send_command(left_side_speed, right_side_speed)
