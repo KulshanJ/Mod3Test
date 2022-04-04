@@ -126,14 +126,15 @@ the value will be set to default(0) after every stop and scan
 '''
 
 def distanceChecking2(listFromLiDAR, flag):
-    deltaAngle = math.pi / (2 * 29)
     
+    deltaAngle = math.pi / (2 * 29)
     roverRange = math.sqrt(0.61 ** 2 + 0.61 ** 2)
-    listOfDistance2 = []
+    listOfAlertDistance2 = []
     i = 0
     while i < 30:
-        listOfDistance2.append(roverRange / math.sin((math.pi / 4) + (deltaAngle * (i))))
+        listOfAlertDistance2.append(roverRange / math.sin((math.pi / 4) + (deltaAngle * (i))))
         i += 1
+
 
     listOfDifference = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
     i = 0
