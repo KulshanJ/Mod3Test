@@ -9,14 +9,12 @@ def angleFinding(previousPosition, currentPosition):
     m = np.array(previousPosition)
     n = np.array(currentPosition)
     vector = np.subtract(n, m)
-
     '''
     According to vector dot product rule, calculate the angle between the vector and the reference vector
     '''
     products = np.dot(vector, reference)
     cosX = products / (np.linalg.norm(vector))
     angle = math.acos(cosX)
-
     '''
     We want to track the angle from the +y direction to the vector, 
     but the angle returned is always the smaller one
@@ -24,7 +22,6 @@ def angleFinding(previousPosition, currentPosition):
     '''
     checkingVector = np.array([1, 0])
     check = np.dot(checkingVector, vector)
-
     '''
     Convert the small angle in 2/3 quadrant to the big angle we want
     '''
@@ -128,7 +125,7 @@ flag will be defined in main function
 the value will be set to default(0) after every stop and scan
 '''
 
-def distanceChecking2(listOfAlertDistance2, listFromLiDAR, flag):
+def distanceChecking2(listFromLiDAR, flag):
     deltaAngle = math.pi / (2 * 29)
     
     roverRange = math.sqrt(0.61 ** 2 + 0.61 ** 2)
@@ -171,7 +168,7 @@ def stop_check():
     left_side_speed = 0
     right_side_speed = 0
     rover.send_command(left_side_speed, right_side_speed)
-    closestDist = [0,0,0,0]
+    closestDist = [0, 0, 0, 0]
 
     # call on turning function to rotate 90 degrees ccw
     turningFunction(-90)
@@ -220,7 +217,7 @@ def stop_check():
     left_side_speed = 0
     right_side_speed = 0
     rover.send_command(left_side_speed, right_side_speed)
-    time.sleep(sleeptime)
+
 
 
 # BACKUP
@@ -228,7 +225,7 @@ def stop_check():
 def backup1():
     rover = Rover()
     previousX = rover.x
-    previousY =rover.y
+    previousY = rover.y
     left_side_speed = -1
     right_side_speed = -1
 
@@ -277,7 +274,7 @@ def main():
 
         listOfLiDAR = getLiDARDistance()
         closestDistance, result = distanceChecking1(listOfLiDAR)
-        flag = distanceChecking2(listOfDistance2, listOfLiDAR, flag)
+        flag = distanceChecking2(listOfLiDAR, flag)
         if flag == 0 and result == True:
             stop_check()
 
