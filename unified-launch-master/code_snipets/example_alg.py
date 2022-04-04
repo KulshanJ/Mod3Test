@@ -101,7 +101,7 @@ def distanceChecking1(listFromLiDAR):
         return true if the obstacle is within its path ---> need further actions
     '''
     result = False
-    if(listFromLiDAR[0] < 0):
+    if(listOfDifference[0] < 0):
         result = True
     closestDistance = listOfDifference[0]*(-1)
     return closestDistance, result
