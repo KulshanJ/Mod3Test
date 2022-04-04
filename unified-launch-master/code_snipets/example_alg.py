@@ -277,6 +277,9 @@ def main():
         closestDistance, result = distanceChecking1(listOfLiDAR)
         flag = distanceChecking2(listOfLiDAR, flag)
         if result == True:
+            left_side_speed = 0
+            right_side_speed = 0
+            rover.send_command(left_side_speed, right_side_speed)
             stop_check()
 
         '''elif flag >= 1 and result == True:
