@@ -279,7 +279,7 @@ def main():
         listOfLiDAR = getLiDARDistance()
         
         left_side_speed = 10
-        right_side_speed = 10
+        right_side_speed = -10
         rover.send_command(left_side_speed, right_side_speed)
         closestDistance, result = distanceChecking1(listOfLiDAR)
         
