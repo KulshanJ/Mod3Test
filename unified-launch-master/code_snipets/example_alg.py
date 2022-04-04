@@ -276,11 +276,14 @@ def main():
         listOfLiDAR = getLiDARDistance()
         closestDistance, result = distanceChecking1(listOfLiDAR)
         flag = distanceChecking2(listOfLiDAR, flag)
-        if flag == 0 and result == True:
+        if '''flag == 0 and '''result == True:
             stop_check()
 
-        elif flag >= 1 and result == True:
-            backup1()
+        '''elif flag >= 1 and result == True:
+            left_side_speed = 0
+            right_side_speed = 0
+            rover.send_command(left_side_speed, right_side_speed)
+            backup1()'''
 
             i = i + 1
         sleep(0.01)
