@@ -126,7 +126,7 @@ the value will be set to default(0) after every stop and scan
 '''
 
 def distanceChecking2(listFromLiDAR, flag):
-    
+
     deltaAngle = math.pi / (2 * 29)
     roverRange = math.sqrt(0.61 ** 2 + 0.61 ** 2)
     listOfAlertDistance2 = []
@@ -255,10 +255,10 @@ def main():
 
     '''Find angles and make orientation'''
     angleOfHeadingVector = angleFinding(currentPosition, destinationList)
-    heading = rover.heading
-    angleOfRoverHead = angleConvertion(heading)
-    angleToTurn = pathDecision(angleOfRoverHead, angleOfHeadingVector)
-    turningFunction(angleToTurn)
+    #heading = rover.heading
+    #angleOfRoverHead = angleConvertion(heading)
+    #angleToTurn = pathDecision(angleOfRoverHead, angleOfHeadingVector)
+    #turningFunction(angleToTurn)
     # fix later
     # none of this works because heading isn't called
 
