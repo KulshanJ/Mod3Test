@@ -285,7 +285,7 @@ def main():
             rover.send_command(left_side_speed, right_side_speed)
             backup1()'''
 
-            i = i + 1
+        i = i + 1
         sleep(0.01)
 
         if rover.x == destinationList[0] and rover.y == destinationList[1]:
