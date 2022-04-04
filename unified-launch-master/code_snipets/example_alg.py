@@ -247,9 +247,9 @@ def main():
     destinationList = [100, 100]
     rover = Rover()
 
-    left_side_speed = 5
-    right_side_speed = 5
-    rover.send_command(left_side_speed, right_side_speed)
+    #left_side_speed = 5
+    #right_side_speed = 5
+    #rover.send_command(left_side_speed, right_side_speed)
         
     # Step1: orient the rover to head towards the destination
     '''Call function to get current position and head vector'''
@@ -271,7 +271,7 @@ def main():
     right_side_speed = 5
 
     while i < 3000:
-        # rover.send_command(left_side_speed, right_side_speed)
+        rover.send_command(left_side_speed, right_side_speed)
 
         flag = 0
 
