@@ -276,7 +276,7 @@ def main():
         listOfLiDAR = getLiDARDistance()
         closestDistance, result = distanceChecking1(listOfLiDAR)
         flag = distanceChecking2(listOfLiDAR, flag)
-        if '''flag == 0 and '''result == True:
+        if result == True:
             stop_check()
 
         '''elif flag >= 1 and result == True:
