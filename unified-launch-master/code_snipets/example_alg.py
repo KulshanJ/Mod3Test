@@ -278,11 +278,11 @@ def main():
 
         listOfLiDAR = getLiDARDistance()
         
+        
+        closestDistance, result = distanceChecking1(listOfLiDAR)
         left_side_speed = 10
         right_side_speed = -10
         rover.send_command(left_side_speed, right_side_speed)
-        closestDistance, result = distanceChecking1(listOfLiDAR)
-        
         
         #flag = distanceChecking2(listOfLiDAR, flag)
         if result == 1:
