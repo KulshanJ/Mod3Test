@@ -92,7 +92,7 @@ def distanceChecking1(listFromLiDAR):
     listOfDifference = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     i = 0
     while i < 30:
-        listOfDifference[i] = listFromLiDAR[i] - listOfAlertDistance1[i]
+        listOfDifference[i] = listFromLiDAR[i] - listOfDistance1[i]
         i += 1
 
     listOfDifference.sort()
