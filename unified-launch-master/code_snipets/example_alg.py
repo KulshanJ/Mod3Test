@@ -164,7 +164,7 @@ def stop_check():
     rover = Rover()
 
     # variables for sleep time, speed, stopping distance, minimum tolerated distance
-    speed = 3
+    speed = 1
     sleeptime = 3
 
     # Stop the rover first
@@ -207,7 +207,11 @@ def stop_check():
     if closestDist[biggestIndex] <= 3:
         backup1()
     else:
-        turningFunction(-90+45*biggestIndex)
+        if biggestIndex <= 1:
+            turningFunction(-90+45*biggestIndex)
+        else:
+            turningFunction(-45+45*biggestIndex)
+
         left_side_speed = speed
         right_side_speed = speed
         rover.send_command(left_side_speed, right_side_speed)
@@ -258,7 +262,7 @@ def main():
     angleToTurn = pathDecision(angleOfRoverHead, angleOfHeadingVector)
     turningFunction(angleToTurn)
     # fix later
-    # none of this works because heading isnt called
+    # none of this works because heading isn't called
 
 
     # Step2: Move forward and scanning before bumping into obstacles
@@ -274,10 +278,10 @@ def main():
         listOfLiDAR = getLiDARDistance()
         closestDistance, result = distanceChecking1(listOfLiDAR)
         flag = distanceChecking2(listOfDistance2, listOfLiDAR, flag)
-        if result == True:
+        if flag == 0 and result == True:
             stop_check()
 
-        elif flag > 1:
+        elif flag >= 1 and result == True:
             backup1()
 
             i = i + 1
