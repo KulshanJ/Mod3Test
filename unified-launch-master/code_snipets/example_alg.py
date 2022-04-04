@@ -276,6 +276,10 @@ def main():
         flag = 0
 
         listOfLiDAR = getLiDARDistance()
+        sleep(0.1)
+        left_side_speed = 0
+        right_side_speed = 0
+        rover.send_command(left_side_speed, right_side_speed)
         closestDistance, result = distanceChecking1(listOfLiDAR)
         
         
