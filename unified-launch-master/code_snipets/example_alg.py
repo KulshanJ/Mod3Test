@@ -63,9 +63,13 @@ def turningFunction(angle):
 
     check = 1
     # heading < y and x < heading
+    
+    x = desiredHeading - 5
+    y = desiredHeading + 5
+    
     while check == 1:
         realheading = angleConvertion(rover.heading)
-        if realheading == desiredHeading:
+        if realheading < y and x < realheading:
             left_side_speed = 0
             right_side_speed = 0
             rover.send_command(left_side_speed, right_side_speed)
