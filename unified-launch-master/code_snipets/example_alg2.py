@@ -403,10 +403,10 @@ def main():
     left_side_speed = 5
     right_side_speed = -5
     rover.send_command(left_side_speed, right_side_speed)
-    
+
     x = theta - 5
     y = theta + 5
-    
+
     check = 1
     #heading < y and x < heading
     while check == 1:
@@ -426,12 +426,11 @@ def main():
     
     while i < 3000:
         rover.send_command(left_side_speed, right_side_speed)
-        
+
         #flag = 0
         
         listOfLiDAR = [100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100] 
         k = 0
-
         for dist in rover.laser_distances:
             if dist<100:
                 listOfLiDAR[k] = dist
@@ -451,7 +450,5 @@ def main():
         
         if rover.x == destinationList[0] and rover.y == destinationList[1]:
             break
-
-
 if __name__ == "__main__":
     main()
