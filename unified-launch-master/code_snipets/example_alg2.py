@@ -361,10 +361,12 @@ def main():
             stop_check(closestDistance)
         #elif flag > 1:
             #Call Lucas's function
-        
+        left_side_speed = 5
+        right_side_speed = 5
+        rover.send_command(left_side_speed, right_side_speed)
         
             i = i + 1
-        sleep(1)
+        sleep(2)
         realheading = rover.heading
         if realheading > y or x > realheading:
             check = 1
