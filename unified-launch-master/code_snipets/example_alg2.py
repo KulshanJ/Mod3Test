@@ -389,7 +389,7 @@ def main():
 
         #sleep(2)
         realheading = rover.heading
-        if realignment > 700:
+        if realignment > 725:
             check = 1
             realignment = 0
             if rover.x < dx2 and dx1 < rover.x:
