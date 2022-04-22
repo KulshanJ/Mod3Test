@@ -392,8 +392,16 @@ def main():
 
     i = 0
     
+    left_side_speed = 5
+    right_side_speed = -5
+    rover.send_command(left_side_speed, right_side_speed)
+    
     destinationx = 15
-    destinationy = 19
+    destinationy = 15
+    
+    left_side_speed = 5
+    right_side_speed = -5
+    rover.send_command(left_side_speed, right_side_speed)
     
     theta = math.atan2(destinationy - rover.y, rover.x - destinationx)
     
@@ -411,8 +419,7 @@ def main():
     check = 1
     
     while check == 1:
-        realheading = rover.heading
-        
+        realheading = rover.heading        
         if realheading < y and x < realheading:
             left_side_speed = 0
             right_side_speed = 0
