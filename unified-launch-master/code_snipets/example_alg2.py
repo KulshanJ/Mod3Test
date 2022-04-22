@@ -374,7 +374,7 @@ def main():
         rover.send_command(left_side_speed, right_side_speed)
         #sleep(2)
         realheading = rover.heading
-        if realignment > 10000:
+        if realignment > 100:
             check = 1
             
             while check == 1:
