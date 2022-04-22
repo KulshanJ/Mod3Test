@@ -353,6 +353,7 @@ destinationList = [100, 100]
     
 def main():
     
+    import math
     rover = Rover()
     
     
