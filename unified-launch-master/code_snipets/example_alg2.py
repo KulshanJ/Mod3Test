@@ -400,6 +400,24 @@ def main():
     theta = theta * 57.2957795130823209
     
     print(theta)
+    
+    left_side_speed = 5
+    right_side_speed = -5
+    rover.send_command(left_side_speed, right_side_speed)
+    
+    x = theta - 2
+    y = theta + 2
+    
+    check = 1
+    
+    while check == 1:
+        realheading = rover.heading
+        
+        if realheading < y and x < realheading:
+            left_side_speed = 0
+            right_side_speed = 0
+            rover.send_command(left_side_speed, right_side_speed)
+            check = 0
  
     #Step2: Move forward and scanning before bumping into obstacles
    
