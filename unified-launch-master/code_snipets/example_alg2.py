@@ -315,6 +315,7 @@ def main():
     
     x = theta - 5
     y = theta + 5
+    realignment = 0
     
     check = 1
     
@@ -343,6 +344,8 @@ def main():
 
     while i < 3000:
         rover.send_command(left_side_speed, right_side_speed)
+        
+        realignment += 1
 
         #flag = 0
         
@@ -359,6 +362,7 @@ def main():
         #flag = distanceChecking2(listOfDistance2, listOfLiDAR, flag)
         if result == True:
             stop_check(closestDistance)
+            realignment = 0
         #elif flag > 1:
             #Call Lucas's function
 
@@ -368,9 +372,9 @@ def main():
         left_side_speed = 5
         right_side_speed = 5
         rover.send_command(left_side_speed, right_side_speed)
-        sleep(2)
+        #sleep(2)
         realheading = rover.heading
-        if realheading > y or x > realheading:
+        if realignment > 10:
             check = 1
             
             while check == 1:
