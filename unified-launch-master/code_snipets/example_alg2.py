@@ -304,17 +304,20 @@ def main():
 
     i = 0
     
-    destinationx = -15
+    destinationx = 15
     destinationy = 15
     
-    dx1 = destinationx - 0.1
+    realdestinationx = destinationx * -1
+    print(realdestinationx)
+    
+    dx1 = realdestinationx - 0.1
     dy1 = destinationy - 0.1
-    dx2 = destinationx + 0.1
+    dx2 = realdestinationx + 0.1
     dy2 = destinationy + 0.1
     
     theta = math.atan2(destinationy - rover.y, rover.x - destinationx)
     
-    theta = (theta * 57.2957795130823209) + 90
+    theta = (theta * 57.2957795130823209)
     
     print(theta)
     
@@ -401,7 +404,7 @@ def main():
                 right_side_speed = -3
                 rover.send_command(left_side_speed, right_side_speed)
                 theta = math.atan2(destinationy - rover.y, rover.x - destinationx)
-                theta = (theta * 57.2957795130823209) + 90
+                theta = (theta * 57.2957795130823209)
                 x = theta - 4
                 y = theta + 4
                 if realheading < y and x < realheading:
