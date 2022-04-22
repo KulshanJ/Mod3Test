@@ -74,6 +74,7 @@ def turningFunction(angle):
         left_side_speed = 5
         right_side_speed = -5
         rover.send_command(left_side_speed, right_side_speed)
+        sleep(0.5)
     # if ccw
     else:
         # calculate the new desired vector
