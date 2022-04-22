@@ -390,6 +390,15 @@ def main():
     turningFunction(pathDecision(angleOfRoverHead, angleOfHeadingVector))
 
     i = 0
+    
+    destination.x = 15
+    destination.y = 15
+    
+    theta = atan2(destination.y - rover.y, rover.x - destination.x)
+    
+    theta = theta * 57.2957795130823209
+    
+    print(theta)
  
     #Step2: Move forward and scanning before bumping into obstacles
    
