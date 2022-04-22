@@ -364,11 +364,11 @@ def main():
         
         
             i = i + 1
-        
+        sleep(1)
         realheading = rover.heading
         if realheading > y or x > realheading:
             check = 1
-            sleep(5)
+            
             while check == 1:
                 realheading = rover.heading
                 left_side_speed = 3
