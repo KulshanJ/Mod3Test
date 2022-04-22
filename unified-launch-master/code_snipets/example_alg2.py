@@ -304,13 +304,13 @@ def main():
 
     i = 0
     
-    destinationx = 15
+    destinationx = -15
     destinationy = 15
     
-    dx1 = destinationx - 3
-    dy1 = destinationy - 3
-    dx2 = destinationx + 3
-    dy2 = destinationy + 3
+    dx1 = destinationx - 0.1
+    dy1 = destinationy - 0.1
+    dx2 = destinationx + 0.1
+    dy2 = destinationy + 0.1
     
     theta = math.atan2(destinationy - rover.y, rover.x - destinationx)
     
@@ -381,7 +381,8 @@ def main():
         print(rover.x)
         print(2)
         print(rover.y)
-        
+        print(3)
+        print(realignment)
 
         #sleep(2)
         realheading = rover.heading
