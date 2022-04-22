@@ -431,7 +431,18 @@ def main():
 
     while i < 3000:
         rover.send_command(left_side_speed, right_side_speed)
-        print(4)
+        if realheading > y or x > realheading:
+            check = 1
+            while check == 1:
+                realheading = rover.heading
+                left_side_speed = 3
+                right_side_speed = -3
+                rover.send_command(left_side_speed, right_side_speed)
+                if realheading < y and x < realheading:
+                    left_side_speed = 0
+                    right_side_speed = 0
+                    rover.send_command(left_side_speed, right_side_speed)
+                    check = 0
         #flag = 0
         
         listOfLiDAR = [100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100] 
