@@ -422,9 +422,8 @@ def main():
     #Step2: Move forward and scanning before bumping into obstacles
    
     left_side_speed = 5
-    right_side_speed = -5
+    right_side_speed = 5
     rover.send_command(left_side_speed, right_side_speed)
-    print(3)
     
     sleep(3.01)
 
