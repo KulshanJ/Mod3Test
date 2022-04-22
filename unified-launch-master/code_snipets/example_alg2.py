@@ -74,6 +74,7 @@ def turningFunction(angle):
         left_side_speed = 5
         right_side_speed = -5
         rover.send_command(left_side_speed, right_side_speed)
+        sleep(0.5)
     # if ccw
     else:
         # calculate the new desired vector
@@ -404,8 +405,8 @@ def main():
     right_side_speed = -5
     rover.send_command(left_side_speed, right_side_speed)
     
-    x = theta - 5
-    y = theta + 5
+    x = theta - 2
+    y = theta + 2
     
     check = 1
     #heading < y and x < heading
@@ -427,6 +428,24 @@ def main():
 
     while i < 3000:
         rover.send_command(left_side_speed, right_side_speed)
+        
+        sleep(0.8)
+        
+        left_side_speed = 5
+        right_side_speed = -5
+        rover.send_command(left_side_speed, right_side_speed)
+        
+        check = 1
+        #heading < y and x < heading
+        while check == 1:
+            realheading = rover.heading
+            print(str(realheading) + "realheading")
+            print(str(theta) + "desiredHeading")
+            if realheading < y and x < realheading:
+                left_side_speed = 0
+                right_side_speed = 0
+                rover.send_command(left_side_speed, right_side_speed)
+                check = 0
         
         #flag = 0
         
