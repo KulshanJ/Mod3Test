@@ -391,7 +391,7 @@ def main():
 
     i = 0
     
-        destinationx = 15
+    destinationx = 15
     destinationy = 19
     
     theta = math.atan2(destinationy - rover.y, rover.x - destinationx)
@@ -421,11 +421,9 @@ def main():
      
     #Step2: Move forward and scanning before bumping into obstacles
    
-    left_side_speed = -5
+    left_side_speed = 5
     right_side_speed = 5
-    rover.send_command(left_side_speed, right_side_speed)
     
-    sleep(3.01)
 
     while i < 3000:
         rover.send_command(left_side_speed, right_side_speed)
