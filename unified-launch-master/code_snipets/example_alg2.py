@@ -375,7 +375,7 @@ def main():
         print(realignment)
         #sleep(2)
         realheading = rover.heading
-        if realignment > 2000:
+        if realignment > 700:
             check = 1
             
             while check == 1:
