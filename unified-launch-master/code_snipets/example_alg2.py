@@ -377,7 +377,12 @@ def main():
         left_side_speed = 5
         right_side_speed = 5
         rover.send_command(left_side_speed, right_side_speed)
-        print(realignment)
+        print(1)
+        print(rover.x)
+        print(2)
+        print(rover.y)
+        
+
         #sleep(2)
         realheading = rover.heading
         if realignment > 700:
