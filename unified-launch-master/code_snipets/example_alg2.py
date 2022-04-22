@@ -375,9 +375,9 @@ def main():
         print(realignment)
         #sleep(2)
         realheading = rover.heading
-        if realignment > 600:
+        if realignment > 625:
             check = 1
-            
+            realignment = 0
             while check == 1:
                 realheading = rover.heading
                 left_side_speed = 3
