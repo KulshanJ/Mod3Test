@@ -364,6 +364,7 @@ def main():
         
         
             i = i + 1
+        realheaing = rover.heading
         if realheading > y or x > realheading:
             check = 1
             while check == 1:
