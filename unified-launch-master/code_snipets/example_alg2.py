@@ -368,13 +368,13 @@ def main():
 
         
             i = i + 1
-        print(2)
+        
         left_side_speed = 5
         right_side_speed = 5
         rover.send_command(left_side_speed, right_side_speed)
         #sleep(2)
         realheading = rover.heading
-        if realignment > 10:
+        if realignment > 10000:
             check = 1
             
             while check == 1:
