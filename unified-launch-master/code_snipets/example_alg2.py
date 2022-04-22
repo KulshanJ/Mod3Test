@@ -313,8 +313,8 @@ def main():
     
     print(theta)
     
-    x = theta - 5
-    y = theta + 5
+    x = theta - 4
+    y = theta + 4
     realignment = 0
     
     check = 1
@@ -375,7 +375,7 @@ def main():
         print(realignment)
         #sleep(2)
         realheading = rover.heading
-        if realignment > 700:
+        if realignment > 655:
             check = 1
             
             while check == 1:
@@ -383,11 +383,19 @@ def main():
                 left_side_speed = 3
                 right_side_speed = -3
                 rover.send_command(left_side_speed, right_side_speed)
+                theta = math.atan2(destinationy - rover.y, rover.x - destinationx)
+                theta = theta * 57.2957795130823209
+                x = theta - 4
+                y = theta + 4
                 if realheading < y and x < realheading:
                     left_side_speed = 0
                     right_side_speed = 0
                     rover.send_command(left_side_speed, right_side_speed)
+                    left_side_speed = 5
+                    right_side_speed = 5
+                    rover.send_command(left_side_speed, right_side_speed)
                     check = 0
+                    break
         sleep(0.01)
         
         if rover.x == destinationList[0] and rover.y == destinationList[1]:
