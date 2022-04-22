@@ -310,10 +310,10 @@ def main():
     realdestinationx = destinationx * -1
     print(realdestinationx)
     
-    dx1 = realdestinationx - 0.1
-    dy1 = destinationy - 0.1
-    dx2 = realdestinationx + 0.1
-    dy2 = destinationy + 0.1
+    dx1 = realdestinationx - 1.3
+    dy1 = destinationy - 1.3
+    dx2 = realdestinationx + 1.3
+    dy2 = destinationy + 1.3
     
     theta = math.atan2(destinationy - rover.y, rover.x - destinationx)
     
