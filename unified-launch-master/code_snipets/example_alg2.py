@@ -364,7 +364,7 @@ def main():
         
         
             i = i + 1
-        sleep(1)
+        sleep(7)
         realheading = rover.heading
         if realheading > y or x > realheading:
             check = 1
