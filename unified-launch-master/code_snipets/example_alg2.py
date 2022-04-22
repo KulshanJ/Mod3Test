@@ -447,8 +447,6 @@ def main():
             i = i + 1
         sleep(0.01)
         
-        print(1)
-        
         if rover.x == destinationList[0] and rover.y == destinationList[1]:
             break
 
