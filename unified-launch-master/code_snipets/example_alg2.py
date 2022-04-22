@@ -412,6 +412,9 @@ def main():
     
     while check == 1:
         realheading = rover.heading
+        left_side_speed = 5
+        right_side_speed = -5
+        rover.send_command(left_side_speed, right_side_speed)
 
         if realheading < y and x < realheading:
             left_side_speed = 0
