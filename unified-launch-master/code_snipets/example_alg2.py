@@ -392,7 +392,7 @@ def main():
     i = 0
     
     destinationx = 15
-    destinationy = 19
+    destinationy = 15
     
     theta = math.atan2(destinationy - rover.y, rover.x - destinationx)
     
@@ -400,8 +400,8 @@ def main():
     
     print(theta)
     
-    left_side_speed = 5
-    right_side_speed = -5
+    left_side_speed = 2
+    right_side_speed = -2
     rover.send_command(left_side_speed, right_side_speed)
     
     x = theta - 5
@@ -411,8 +411,6 @@ def main():
     #heading < y and x < heading
     while check == 1:
         realheading = rover.heading
-        print(str(realheading) + "realheading")
-        print(str(theta) + "desiredHeading")
         if realheading < y and x < realheading:
             left_side_speed = 0
             right_side_speed = 0
@@ -448,6 +446,8 @@ def main():
         
             i = i + 1
         sleep(0.01)
+        
+        print(1)
         
         if rover.x == destinationList[0] and rover.y == destinationList[1]:
             break
