@@ -353,7 +353,6 @@ destinationList = [100, 100]
     
 def main():
     
-    import math
     rover = Rover()
     
     
@@ -395,7 +394,7 @@ def main():
     destinationx = 15
     destinationy = 15
     
-    theta = atan2(destinationy - rover.y, rover.x - destinationx)
+    theta = math.atan2(destinationy - rover.y, rover.x - destinationx)
     
     theta = theta * 57.2957795130823209
     
