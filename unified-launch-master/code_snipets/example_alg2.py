@@ -391,10 +391,10 @@ def main():
 
     i = 0
     
-    destination.x = 15
-    destination.y = 15
+    destinationx = 15
+    destinationy = 15
     
-    theta = atan2(destination.y - rover.y, rover.x - destination.x)
+    theta = atan2(destinationy - rover.y, rover.x - destinationx)
     
     theta = theta * 57.2957795130823209
     
